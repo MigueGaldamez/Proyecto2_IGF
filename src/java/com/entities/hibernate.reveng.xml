@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="insaforp"/>
+  <table-filter match-name="programa"/>
+  <table-filter match-name="presupuesto"/>
+  <table-filter match-name="participante"/>
+  <table-filter match-name="gasto"/>
+  <table-filter match-name="detalle_gasto"/>
+  <table-filter match-name="financiamiento"/>
+  <table-filter match-name="detalle_financiamiento"/>
+  <table-filter match-name="local"/>
+  <table-filter match-name="curso"/>
+  <table-filter match-name="rol"/>
+  <table-filter match-name="proveedor"/>
+  <table-filter match-name="incripcion_curso"/>
+  <table-filter match-name="usuario"/>
+</hibernate-reverse-engineering>

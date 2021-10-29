@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/insaforp</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password"/>
+    <property name="hibernate.enable_lazy_load_no_trans">true</property>
+    <mapping class="com.entities.DetalleGasto"/>
+    <mapping class="com.entities.Rol"/>
+    <mapping class="com.entities.Usuario"/>
+    <mapping class="com.entities.Financiamiento"/>
+    <mapping class="com.entities.Local"/>
+    <mapping class="com.entities.IncripcionCurso"/>
+    <mapping class="com.entities.Programa"/>
+    <mapping class="com.entities.Participante"/>
+    <mapping class="com.entities.Gasto"/>
+    <mapping class="com.entities.DetalleFinanciamiento"/>
+    <mapping class="com.entities.Presupuesto"/>
+    <mapping class="com.entities.Curso"/>
+    <mapping class="com.entities.Proveedor"/>
+  </session-factory>
+</hibernate-configuration>
