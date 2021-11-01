@@ -105,12 +105,12 @@
               </div>
               <div class="modal-footer">
                 <c:if test="${ empty usuario.nombreUsuario}">
-                    <form:button class="btn btn-primary mt-4">Guardarzzz</form:button>
+                    <form:button class="btn btn-primary mt-4">Guardar</form:button>
                 </c:if>
                 <c:if test="${! empty usuario.nombreUsuario}">
-                    <form:button class="btn btn-primary mt-4">Editarzzzzz</form:button>
+                    <form:button class="btn btn-primary mt-4">Editar</form:button>
                 </c:if>
-                <a class="btn btn-danger mt-4" href="<spring:url value="/usuarios/list/"/>">Cancelarzzzzz</a>
+                <a class="btn btn-danger mt-4" href="<spring:url value="/usuarios/list/"/>">Cancelar</a>
               </div>
              </form:form>
             </div>

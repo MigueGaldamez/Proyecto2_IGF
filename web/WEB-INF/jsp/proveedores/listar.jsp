@@ -73,7 +73,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="estadoProveedor">Contraseña:</label>
+                                        <label for="estadoProveedor">Estado:</label>
                                         <div class="input-group">
                                             <form:input path="estadoProveedor" cssClass="form-control"/>
                                             <span class="input-group-addon"><span
@@ -81,7 +81,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="tipoProveedor">Contraseña:</label>
+                                        <label for="tipoProveedor">Tipo:</label>
                                         <div class="input-group">
                                             <form:input path="tipoProveedor" cssClass="form-control"/>
                                             <span class="input-group-addon"><span
@@ -146,7 +146,7 @@
                                     <td>${Proveedor.estadoProveedor}</td>
                                     <td>${Proveedor.tipoProveedor}</td>
                                     <td colspan="2">
-                                        <a class="btn btn-success btn-sm" id="botonEditar" href="<spring:url value="/usuarios/edit/${Proveedor.idProveedor}"/>">
+                                        <a class="btn btn-success btn-sm" id="botonEditar" href="<spring:url value="/proveedores/edit/${Proveedor.idProveedor}"/>">
                                             <span class="glyphicon glyphicon-edit"></span>Editar</a>
                                         <a class="btn btn-danger btn-sm" href="javascript:eliminar('${Proveedor.idProveedor}')">
                                             <span class="glyphicon glyphicon-edit"></span>Eliminar</a>
@@ -174,7 +174,7 @@
                 });
 
 
-                var editando = document.getElementById('idUsuario');
+                var editando = document.getElementById('idProveedor');
 
                 if (editando.value != "") {
                     myModal.show()
