@@ -135,19 +135,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach items="${listarUsuarios}" var="Usuario">
+                            <c:forEach items="${listarProveedores}" var="Proveedor">
                                 <tr>
 
-                                    <td>${Usuario.idUsuario}</td>
-                                    <td>${Usuario.nombreUsuario}</td>
-                                    <td>${Usuario.apellidoUsuario}</td>
-                                    <td>${Usuario.rol.nombreRol}</td>
-                                    <td>${Usuario.username}</td>
-                                    <td>${Usuario.email}</td>
+                                    <td>${Proveedor.idProveedor}</td>
+                                    <td>${Proveedor.nombreProveedor}</td>
+                                    <td>${Proveedor.contactoProveedor}</td>
+                                    <td>${Proveedor.telefonoProveedor}</td>
+                                    <td>${Proveedor.correoProveedor}</td>
+                                    <td>${Proveedor.estadoProveedor}</td>
+                                    <td>${Proveedor.tipoProveedor}</td>
                                     <td colspan="2">
-                                        <a class="btn btn-success btn-sm" id="botonEditar" href="<spring:url value="/usuarios/edit/${Usuario.idUsuario}"/>">
+                                        <a class="btn btn-success btn-sm" id="botonEditar" href="<spring:url value="/usuarios/edit/${Proveedor.idProveedor}"/>">
                                             <span class="glyphicon glyphicon-edit"></span>Editar</a>
-                                        <a class="btn btn-danger btn-sm" href="javascript:eliminar('${Usuario.idUsuario}')">
+                                        <a class="btn btn-danger btn-sm" href="javascript:eliminar('${Proveedor.idProveedor}')">
                                             <span class="glyphicon glyphicon-edit"></span>Eliminar</a>
                                     </td>
                                 </tr>
