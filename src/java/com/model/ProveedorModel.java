@@ -17,10 +17,10 @@ import org.hibernate.Transaction;
  * @author juann
  */
 public class ProveedorModel {
-    
+
     SessionFactory factory = HibernateUtil.getSessionFactory();
 
-     public int insertarProveedor(Proveedor proveedor) {
+    public int insertarProveedor(Proveedor proveedor) {
         Session ses = factory.openSession();
         try {
             Transaction tran = ses.beginTransaction();
@@ -32,52 +32,53 @@ public class ProveedorModel {
             ses.close();
             return 0;
         }
-     }
-     public List<Proveedor> listarProveedores(){
+    }
 
-        Session ses= factory.openSession();
-        Query consulta= ses.createQuery("SELECT e FROM Proveedor e");
-        try{
+    public List<Proveedor> listarProveedores() {
 
-        List<Proveedor> lista= consulta.list();
-        ses.close();
-        return lista;
+        Session ses = factory.openSession();
+        Query consulta = ses.createQuery("SELECT e FROM Proveedor e");
+        try {
 
-        }
-        catch(Exception e){
-        ses.close();
-        return null;
-        }
-     }
-     public Proveedor obtenerProveedor(String codigo) {
-        Session ses= factory.openSession();
-        try{
-            int codigoI = Integer.parseInt(codigo);
-            Proveedor proveedor= (Proveedor) ses.get(Proveedor.class,codigoI);
+            List<Proveedor> lista = consulta.list();
             ses.close();
-            return proveedor;
-        }
-        catch(Exception e){
+            return lista;
+
+        } catch (Exception e) {
             ses.close();
             return null;
         }
-     }
-      public Proveedor obtenerUsuarioPorCorreo(String correo) {
-        Session ses= factory.openSession();
-        try{
-            Query query = ses.createQuery("FROM Proveedor e  where e.email = :email").setParameter("email", correo);            
-            List lista = query.list();
-            Proveedor proveedor =(Proveedor) lista.get(0);
+    }
+
+    public Proveedor obtenerProveedor(String codigo) {
+        Session ses = factory.openSession();
+        try {
+            int codigoI = Integer.parseInt(codigo);
+            Proveedor proveedor = (Proveedor) ses.get(Proveedor.class, codigoI);
             ses.close();
             return proveedor;
+        } catch (Exception e) {
+            ses.close();
+            return null;
         }
-        catch(Exception e){
-        ses.close();
-        return null;
+    }
+
+    public Proveedor obtenerUsuarioPorCorreo(String correo) {
+        Session ses = factory.openSession();
+        try {
+            Query query = ses.createQuery("FROM Proveedor e  where e.email = :email").setParameter("email", correo);
+            List lista = query.list();
+            Proveedor proveedor = (Proveedor) lista.get(0);
+            ses.close();
+            return proveedor;
+        } catch (Exception e) {
+            ses.close();
+            return null;
         }
 
     }
-     public int modificarProveedor(Proveedor proveedor) {
+
+    public int modificarProveedor(Proveedor proveedor) {
         Session ses = factory.openSession();
         try {
             Transaction tran = ses.beginTransaction();
@@ -89,26 +90,26 @@ public class ProveedorModel {
             ses.close();
             return 0;
         }
-     }
-     public int eliminarProveedor(String id){
-        int filasAfectadas=0;
-        Session ses= factory.openSession();
+    }
+
+    public int eliminarProveedor(String id) {
+        int filasAfectadas = 0;
+        Session ses = factory.openSession();
         int codigoI = Integer.parseInt(id);
 
-        try{
-        Proveedor proveedor= (Proveedor) ses.get(Proveedor.class,codigoI);
-            if(proveedor!=null){
-                Transaction tran= ses.beginTransaction();
+        try {
+            Proveedor proveedor = (Proveedor) ses.get(Proveedor.class, codigoI);
+            if (proveedor != null) {
+                Transaction tran = ses.beginTransaction();
                 ses.delete(proveedor);
                 tran.commit();
-                filasAfectadas=1;
+                filasAfectadas = 1;
             }
             ses.close();
             return filasAfectadas;
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             ses.close();
             return filasAfectadas;
         }
-     }
+    }
 }

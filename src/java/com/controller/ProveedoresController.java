@@ -43,7 +43,6 @@ public class ProveedoresController {
     public String insertarProveedor(@ModelAttribute("proveedor")Proveedor proveedor, Model model,RedirectAttributes atributos){
         model.addAttribute("listarProveedorees",proveedorModel.listarProveedores());
         model.addAttribute("listarRoles",rolModel.listarRoles());
-//        proveedor.setPassword(passwordEncoder.encode(proveedor.getPassword()));
         if(proveedorModel.insertarProveedor(proveedor)>0){
             atributos.addFlashAttribute("Exito","Proveedor registrado con exito");
             return "redirect:/proveedores/list/";
@@ -65,7 +64,6 @@ public class ProveedoresController {
     public String modificarProveedor(Proveedor proveedor, Model model,RedirectAttributes atributos){
         model.addAttribute("listarProveedores",proveedorModel.listarProveedores());
         model.addAttribute("listarRoles",rolModel.listarRoles());
-//        proveedor.setPassword(passwordEncoder.encode(proveedor.getPassword()));
         if(proveedorModel.modificarProveedor(proveedor)>0){
             atributos.addFlashAttribute("Exito","Proveedor modificado con exito");
             return "redirect:/proveedores/list/";
