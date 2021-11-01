@@ -96,9 +96,9 @@
                                 <form:button class="btn btn-primary mt-4">Agregar Proveedor</form:button>
                             </c:if>
                             <c:if test="${! empty proveedor.nombreProveedor}">
-                                <form:button class="btn btn-primary mt-4">Editar</form:button>
+                                <form:button class="btn btn-primary mt-4">Guardar cambios</form:button>
                             </c:if>
-                            <a class="btn btn-danger mt-4" href="<spring:url value="/usuarios/list/"/>">Cancelar</a>
+                            <a class="btn btn-danger mt-4" href="<spring:url value="/proveedores/list/"/>">Cancelar</a>
                         </div>
                     </form:form>
                 </div>
@@ -132,6 +132,7 @@
                                 <th>Correo</th>
                                 <th>Estado</th>
                                 <th>Tipo</th>
+                                <th>Operaciones</th>
                             </tr>
                         </thead>
                         <tbody>
