@@ -86,7 +86,7 @@
 
                                     <!--Inicio del Select-->
                                     <div class="form-group">
-                                        <label for="tipoProveedor">Estado:</label>
+                                        <label for="tipoProveedor">Tipo:</label>
                                         <div class="input-group">
                                             <select class="form-select" aria-label="Default select example">
                                                 <option value="1">Activo</option>
