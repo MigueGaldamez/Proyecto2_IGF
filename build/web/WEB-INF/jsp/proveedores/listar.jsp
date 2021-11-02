@@ -72,22 +72,29 @@
                                                     class="glyphicon glyphicon-asterisk"></span></span>
                                         </div>
                                     </div>
+                                    <!--Inicio del Select-->
                                     <div class="form-group">
                                         <label for="estadoProveedor">Estado:</label>
                                         <div class="input-group">
-                                            <form:input path="estadoProveedor" cssClass="form-control"/>
-                                            <span class="input-group-addon"><span
-                                                    class="glyphicon glyphicon-asterisk"></span></span>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1">Activo</option>
+                                                <option value="2">Inactivo</option>
+                                            </select>
                                         </div>
                                     </div>
+                                    <!--Fin del Select-->
+
+                                    <!--Inicio del Select-->
                                     <div class="form-group">
-                                        <label for="tipoProveedor">Tipo:</label>
+                                        <label for="tipoProveedor">Estado:</label>
                                         <div class="input-group">
-                                            <form:input path="tipoProveedor" cssClass="form-control"/>
-                                            <span class="input-group-addon"><span
-                                                    class="glyphicon glyphicon-asterisk"></span></span>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="1">Activo</option>
+                                                <option value="2">Inactivo</option>
+                                            </select>
                                         </div>
-                                    </div>
+                                    </div>   
+                                    <!--Fin del Select-->
                                 </div>
                             </div>  
                         </div>
