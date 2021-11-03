@@ -5,7 +5,7 @@
  */
 package com.model;
 
-import com.entities.Gasto;
+import com.entities.DetalleGasto;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -14,16 +14,18 @@ import org.hibernate.Transaction;
 
 /**
  *
- * @author Migue Galdamez
+ * @author Meybel Guardado
  */
-public class GastoModel {
+public class DetalleGastoModel {
+    
     SessionFactory factory = HibernateUtil.getSessionFactory();
 
-     public int insertarGasto(Gasto gasto) {
+    //Esta parte no cambia
+     public int insertarDetalleGasto(DetalleGasto detalle_gasto) {
         Session ses = factory.openSession();
         try {
             Transaction tran = ses.beginTransaction();
-            ses.save(gasto);
+            ses.save(detalle_gasto);
             tran.commit();
             ses.close();
             return 1;
@@ -32,13 +34,15 @@ public class GastoModel {
             return 0;
         }
      }
-     public List<Gasto> listarGastos(){
+     
+     //Esta parte no cambia
+      public List<DetalleGasto> listarDetalleGastos(){
 
         Session ses= factory.openSession();
-        Query consulta= ses.createQuery("SELECT e FROM Gasto e");
+        Query consulta= ses.createQuery("SELECT e FROM DetalleGasto e"); //Nombre de la tabla en Mayúsculas
         try{
 
-        List<Gasto> lista= consulta.list();
+        List<DetalleGasto> lista= consulta.list();
         ses.close();
         return lista;
 
@@ -48,24 +52,27 @@ public class GastoModel {
         return null;
         }
      }
-     public Gasto obtenerGasto(String codigo) {
+      
+      //Esta parte no cambia
+      public DetalleGasto obtenerDetalleGasto(String codigo) {
         Session ses= factory.openSession();
         try{
            int codigoI = Integer.parseInt(codigo);
-           Gasto gasto= (Gasto) ses.get(Gasto.class,codigoI);
+           DetalleGasto detalle_gasto= (DetalleGasto) ses.get(DetalleGasto.class,codigoI);
             ses.close();
-        return gasto;
+        return detalle_gasto;
         }
         catch(Exception e){
             ses.close();
             return null;
         }
      }
-     public int modificarGasto(Gasto gasto) {
+      //Esta parte no cambia
+      public int modificarDetalleGasto(DetalleGasto detalle_gasto) {
         Session ses = factory.openSession();
         try {
             Transaction tran = ses.beginTransaction();
-            ses.update(gasto);
+            ses.update(detalle_gasto);
             tran.commit();
             ses.close();
             return 1;
@@ -74,16 +81,17 @@ public class GastoModel {
             return 0;
         }
      }
-     public int eliminarGasto(String id){
+      //Esta parte no cambia
+      public int eliminarDetalleGasto(String id){
         int filasAfectadas=0;
         Session ses= factory.openSession();
         int codigoI = Integer.parseInt(id);
 
         try{
-        Gasto gasto= (Gasto) ses.get(Gasto.class,codigoI);
-            if(gasto!=null){
+        DetalleGasto detalle_gasto= (DetalleGasto) ses.get(DetalleGasto.class,codigoI);
+            if(detalle_gasto!=null){
                 Transaction tran= ses.beginTransaction();
-                ses.delete(gasto);
+                ses.delete(detalle_gasto);
                 tran.commit();
                 filasAfectadas=1;
             }
@@ -94,5 +102,5 @@ public class GastoModel {
             ses.close();
             return filasAfectadas;
         }
-     }
+     }  
 }
