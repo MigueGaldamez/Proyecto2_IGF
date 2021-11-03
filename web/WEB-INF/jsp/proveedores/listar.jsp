@@ -76,9 +76,9 @@
                                     <div class="form-group">
                                         <label for="estadoProveedor">Estado:</label>
                                         <div class="input-group">
-                                            <form:select  path="estadoProveedor" id="estadoProveedor" class="form-select" aria-label="Default select example">
-                                                <option value="FALSE">Activo</option>
-                                                <option value="TRUE">Inactivo</option>
+                                            <form:select path="estadoProveedor" id="estadoProveedor" class="form-select" aria-label="Default select example">
+                                                <option value="0">Activo</option>
+                                                <option value="1">Inactivo</option>
                                             </form:select>
                                         </div>
                                     </div>
@@ -88,9 +88,9 @@
                                     <div class="form-group">
                                         <label for="tipoProveedor">Tipo:</label>
                                         <div class="input-group">
-                                            <form:select  path="tipoProveedor" id="tipoProveedor" class="form-select" aria-label="Default select example">
-                                                <option value="FALSE">Activo</option>
-                                                <option value="TRUE">Inactivo</option>
+                                            <form:select path="tipoProveedor" id="tipoProveedor" class="form-select" aria-label="Default select example">
+                                                <option value="0">Activo</option>
+                                                <option value="1">Inactivo</option>
                                             </form:select>
                                         </div>
                                     </div>   
@@ -145,7 +145,6 @@
                         <tbody>
                             <c:forEach items="${listarProveedores}" var="Proveedor">
                                 <tr>
-
                                     <td>${Proveedor.idProveedor}</td>
                                     <td>${Proveedor.nombreProveedor}</td>
                                     <td>${Proveedor.contactoProveedor}</td>
@@ -153,19 +152,18 @@
                                     <td>${Proveedor.correoProveedor}</td>
                                     <td>
                                         <c:if test="${Proveedor.estadoProveedor}">
-                                           Inactivo
+                                            Inactivo
                                         </c:if>
                                         <c:if test="${!Proveedor.estadoProveedor}">
                                             Activo
                                         </c:if>
                                     </td>
                                     <td>
-                                    
-                                         <c:if test="${Proveedor.tipoProveedor}">
-                                           Inactivo
-                                         </c:if>
+                                        <c:if test="${Proveedor.tipoProveedor}">
+                                            Inactivo
+                                        </c:if>
                                         <c:if test="${!Proveedor.tipoProveedor}">
-                                           Activo
+                                            Activo
                                         </c:if>
                                     </td>
                                     <td colspan="2">
