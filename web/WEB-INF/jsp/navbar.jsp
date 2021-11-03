@@ -23,6 +23,10 @@
             <li class="nav-item">
                <a class="nav-link active" aria-current="page" href="#">Inicio</a>
              </li>
+             </li>
+              <li class="nav-item">
+               <a class="nav-link active" href="<spring:url value="/detalleGastos/list"/>">Detalle de gastos</a>
+             </li>
              <li class="nav-item">
                <a class="nav-link" href="#">Proveedores</a>
              </li>
