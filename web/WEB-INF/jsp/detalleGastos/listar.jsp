@@ -102,7 +102,7 @@
                                   </div>
                               </div>
                           </div> 
-                          <!--AQUI VA UN MODAAL FOOTER QUE NI IDEA COMO HAACERLOOOOO SE SUPONE QUE ES PARA LOS BOTONES-->
+                          
                           <div class="modal-footer">
                               <c:if test="${ empty DetalleGasto.idDetalleGasto}">
                                   <form:button class="btn btn-primary mt-4">Guardar</form:button>                  
