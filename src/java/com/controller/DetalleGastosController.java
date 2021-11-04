@@ -9,13 +9,19 @@ import com.entities.DetalleGasto;
 import com.model.DetalleGastoModel;
 import com.model.GastoModel;
 import com.model.PresupuestoModel;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 /**
  *
@@ -26,6 +32,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("detalleGastos")
 public class DetalleGastosController {
     
+    /*
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        sdf.setLenient(true);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
+    }*/
     //Poner todas la dependencias
     DetalleGastoModel detalleGastoModel = new DetalleGastoModel();
     GastoModel gastoModel = new GastoModel();
@@ -43,8 +56,8 @@ public class DetalleGastosController {
     }
     
     @RequestMapping(value={"create","list/create"},method = RequestMethod.POST)
-    public String insertarDetalleGasto(@ModelAttribute("detalle_gasto")DetalleGasto detalle_gasto, Model model,RedirectAttributes atributos){
-       
+    public String insertarDetalleGasto(@ModelAttribute("detalle_gasto")DetalleGasto detalle_gasto,Model model,RedirectAttributes atributos){
+        
         //Tambien acá tomar en cuenta las dependencias
         model.addAttribute("listarDetalleGastos",detalleGastoModel.listarDetalleGastos());
         model.addAttribute("listarGastos",gastoModel.listarGastos());

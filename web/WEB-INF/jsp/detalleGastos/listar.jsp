@@ -29,7 +29,8 @@
                                       <div class="well well-sm">
                                           <strong><span class="glyphicon glyphicon-asterisk"></span>Campos requeridos</strong> 
                                       </div>
-                                      
+                                    
+                                         <c:if test="${!empty detalle_gasto.fechaRegistro}">
                                       <!-- Atributo de idDetalleGasto tipo int --> 
                                       <div class="form-group">
                                           <label for="idDetalleGasto">Codigo de detalle gasto:</label>
@@ -39,7 +40,7 @@
                                                class="glyphicon glyphicon-asterisk"></span></span>
                                           </div>
                                       </div>
-                                              
+                                        </c:if>
                                       <!-- Atributo de monto tipo BigDecimal -->
                                       <div class="form-group">
                                           <label for="monto">Monto:</label>
@@ -60,7 +61,7 @@
                                            </div>
                                                
                                        </div>
-                                               
+                                                  
                                        <!-- Atributo de gasto tipo Gasto -->
                                        <div class="form-group">
                                            <label for="gasto">Gasto DetalleGasto</label>
@@ -72,13 +73,13 @@
                                                        <option value="${Gasto.idGasto}"
                                                                <c:if test="${ detalle_gasto.gasto.idGasto == Gasto.idGasto }">
                                                                    selected="selected"   
-                                                               </c:if>${Gasto.nombreGasto}</option>
+                                                               </c:if>> ${Gasto.nombreGasto}</option>
                                                   </c:forEach>
                                                </form:select>
                                                <!-- Fin del select -->
                                           </div>
                                        </div>
-                                       
+                                        
                                        <!-- Atributo de presupuesto tipo Presupuesto -->
                                        <div class="form-group">
                                            <label for="presupuesto">Presupuesto DetalleGasto</label>
@@ -88,9 +89,9 @@
                                                    <option selected disabled >Menú de Presupuesto</option>
                                                    <c:forEach items="${listarPresupuestos}" var="Presupuesto">
                                                        <option value="${Presupuesto.idPresupuesto}"
-                                                               <c:if test="${ detalle_gasto.presupuesto.idPresupuesto == Presupuesto.idPresupuesto }">
+                                                               <c:if test="${ detalle_gasto.presupuesto.idPresupuesto == Presupuesto.idPresupuesto}">
                                                                    selected="selected"
-                                                            </c:if>>${presupuesto.idPresupuesto} - ${presupuesto.fechaCreacion}</option>
+                                                            </c:if>> ${Presupuesto.idPresupuesto} - ${Presupuesto.fechaCreacion}</option>
                                  
                                                    </c:forEach>
                                               </form:select>
@@ -104,11 +105,11 @@
                           </div> 
                           
                           <div class="modal-footer">
-                              <c:if test="${ empty DetalleGasto.idDetalleGasto}">
+                              <c:if test="${ empty detalle_gasto.monto}">
                                   <form:button class="btn btn-primary mt-4">Guardar</form:button>                  
                               </c:if>
                                   
-                                  <c:if test="${! empty DetalleGasto.idDetalleGasto}">
+                                  <c:if test="${! empty detalle_gasto.monto}">
                                    <form:button class="btn btn-primary mt-4">Editar</form:button>   
                                   </c:if>
                                   <a class="btn btn-danger mt-4" href="<spring:url value="/detalleGastos/list/"/>">Cancelar</a>
@@ -141,8 +142,9 @@
                         <thead class="table-dark">
                             <tr>
                                <th>Codigo de dellate gasto</th>
-                               <th>Presupuesto</th>
+                               
                                <th>Gasto</th>
+                               <th>Presupuesto</th>
                                <th>Monto</th>
                                <th>Fecha de registro</th>
                                <th>Operaciones</th>
@@ -150,6 +152,7 @@
                             
                         </thead>
                         <tbody>
+                            
                             <c:forEach items="${listarDetalleGastos}" var="DetalleGasto">
                                 <tr>
                                     <td>${DetalleGasto.idDetalleGasto}</td>
