@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package com.model;
-
-
-import com.entities.Presupuesto;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -37,7 +34,17 @@ public class PresupuestoModel {
         ses.close();
         return null;
         }
-     }
+    }
+
+  
+    public Presupuesto listarDetallesPresupuestoSeleccionado(int idPresupuesto){
+        Session ses = factory.openSession();
+        Query consulta = ses.createQuery("SELECT e FROM Presupuesto e WHERE id_presupuesto = "+idPresupuesto);
+        
+        Presupuesto presupuesto = (Presupuesto)consulta.list().get(0);
+        ses.close();
+        return presupuesto;
+    }
     
     
 }
