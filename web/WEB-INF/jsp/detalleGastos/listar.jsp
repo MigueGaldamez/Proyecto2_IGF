@@ -30,16 +30,18 @@
                                           <strong><span class="glyphicon glyphicon-asterisk"></span>Campos requeridos</strong> 
                                       </div>
                                       
-                                      <!-- Atributo de idDetalleGasto tipo int --> 
-                                      <div class="form-group">
-                                          <label for="idDetalleGasto">Codigo de detalle gasto:</label>
-                                          <div class="input-group">
-                                              <form:input path="idDetalleGasto" cssClass="form-control"/>
-                                              <span class="input-group-addon"><span
-                                               class="glyphicon glyphicon-asterisk"></span></span>
-                                          </div>
-                                      </div>
-                                              
+                                      <c:if test="${!empty detalle_gasto.fechaRegistro}">
+                                        <!-- Atributo de idDetalleGasto tipo int --> 
+                                        <div class="form-group">
+                                            <label for="idDetalleGasto">Codigo de detalle gasto:</label>
+                                            <div class="input-group">
+                                                <form:input path="idDetalleGasto" cssClass="form-control"/>
+                                                <span class="input-group-addon"><span
+                                                        class="glyphicon glyphicon-asterisk"></span></span>
+                                            </div>
+                                        </div>
+                                    </c:if>
+                                                 
                                       <!-- Atributo de monto tipo BigDecimal -->
                                       <div class="form-group">
                                           <label for="monto">Monto:</label>
