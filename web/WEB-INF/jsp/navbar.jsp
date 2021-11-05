@@ -37,17 +37,17 @@
                  <a class="nav-link active" href="<spring:url value="/proveedores/list"/>">Proveedores</a>
              </li>
              <li class="nav-item">
-               <a class="nav-link" href="#">Programas</a>
+               <a class="nav-link" href="<spring:url value="/programas/list"/>">Programas</a>
              </li>
               <li class="nav-item">
-               <a class="nav-link " href="#">Cursos</a>
+               <a class="nav-link " href="<spring:url value="/cursos/list"/>">Cursos</a>
              </li>
              <li class="nav-item">
                <a class="nav-link active" href="<spring:url value="/gastos/list"/>">Gastos</a>
              </li>
              
               <li class="nav-item">
-               <a class="nav-link" href="#">Presupuestacion</a>
+               <a class="nav-link"href="">Presupuestacion</a>
              </li>
         </c:if>
         <c:if test="${empty usr}">
