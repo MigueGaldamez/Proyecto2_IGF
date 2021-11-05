@@ -21,17 +21,31 @@
         
         <c:if test="${! empty usr}">
             <li class="nav-item">
-               <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+               <a class="nav-link" aria-current="page" href="#">Inicio</a>
+             </li>
+             </li>
+              <li class="nav-item">
+               <a class="nav-link active" href="<spring:url value="/detalleGastos/list"/>">Detalle de gastos</a>
              </li>
              <li class="nav-item">
-               <a class="nav-link" href="#">Proveedores</a>
+                 <a class="nav-link active" href="<spring:url value="/usuarios/list"/>">Usuarios</a>
+             </li>
+             <li class="nav-item">
+                 <a class="nav-link active" href="<spring:url value="/roles/list"/>">Roles</a>
+             </li>
+             <li class="nav-item">
+                 <a class="nav-link active" href="<spring:url value="/proveedores/list"/>">Proveedores</a>
              </li>
              <li class="nav-item">
                <a class="nav-link" href="#">Programas</a>
              </li>
               <li class="nav-item">
-               <a class="nav-link" href="#">Cursos</a>
+               <a class="nav-link " href="#">Cursos</a>
              </li>
+             <li class="nav-item">
+               <a class="nav-link active" href="<spring:url value="/gastos/list"/>">Gastos</a>
+             </li>
+             
               <li class="nav-item">
                <a class="nav-link" href="#">Presupuestacion</a>
              </li>
@@ -41,7 +55,7 @@
                <a class="nav-link active" aria-current="page" href="<spring:url value="/"/>">Iniciar Sesión</a>
              </li>
              <li class="nav-item">
-               <a class="nav-link" href="<spring:url value="/registrar"/>">Registrarse</a>
+               <a class="nav-link active" href="<spring:url value="/registrar"/>">Registrarse</a>
              </li>
         </c:if>
       </ul>
