@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.model;
+import com.entities.Presupuesto;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
