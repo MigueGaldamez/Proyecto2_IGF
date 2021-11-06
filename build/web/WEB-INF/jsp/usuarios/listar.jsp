@@ -8,10 +8,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista de Usuarios</title>
+        <title>Lista de fanpage</title>
         <jsp:include page="/WEB-INF/jsp/cabecera.jsp"/>
     </head>
      <jsp:include page="/WEB-INF/jsp/navbar.jsp"/>
+     
+     
+     
     <body>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal"  data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -130,6 +133,7 @@
                 </button>
             </div>
             <!--fin boton modal-->
+            
             <div class="row mt-4">
                 <div class="col">
                     <!--<a class="btn btn-primary btn-md" href="<spring:url value="/usuarios/create"/>"> Nuevo Usuario</a>

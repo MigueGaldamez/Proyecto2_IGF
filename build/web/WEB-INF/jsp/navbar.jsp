@@ -35,6 +35,12 @@
               <li class="nav-item">
                <a class="nav-link" href="#">Presupuestacion</a>
              </li>
+             <li class="nav-item">
+               <a class="nav-link" href="<spring:url value="/financiamientos/list"/>">Financiamientos</a>
+             </li>
+             
+             spring:url value="/presupuesto/detalles"/>"
+             
         </c:if>
         <c:if test="${empty usr}">
              <li class="nav-item">
