@@ -7,6 +7,7 @@ package com.controller;
 
 import com.entities.Curso;
 import com.model.CursoModel;
+import com.model.ProveedorModel;
 import com.model.RolModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,13 +23,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class CursoController {
     CursoModel cursoModel = new CursoModel();
     RolModel rolModel = new RolModel();
+    ProveedorModel proveedorModel = new ProveedorModel();
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     
     @RequestMapping(value={"list"})
     public String listarCurso(Model model){
         
-        model.addAttribute("listarCurso",cursoModel.listarCursos());
-        model.addAttribute("listarRoles",rolModel.listarRoles());
+        model.addAttribute("listarCursos",cursoModel.listarCursos());
+        model.addAttribute("listarRoles",rolModel.listarRoles());//Este aqui no te sirve de nada
+        model.addAttribute("listarProveedores",proveedorModel.listarProveedores());
         model.addAttribute("curso",new Curso());
         return "cursos/listar";
     }
@@ -36,6 +39,7 @@ public class CursoController {
     public String insertarCurso(@ModelAttribute("curso")Curso curso, Model model,RedirectAttributes atributos){
         model.addAttribute("listarCurso",cursoModel.listarCursos());
         model.addAttribute("listarRoles",rolModel.listarRoles());
+        model.addAttribute("listarProveedores",proveedorModel.listarProveedores());
         //curso.setPassword(passwordEncoder.encode(curso.getPassword()));
         if(cursoModel.insertarCurso(curso)>0){
             atributos.addFlashAttribute("Exito","Curso registrado con exito");
@@ -51,14 +55,16 @@ public class CursoController {
     public String obtenerCurso(@PathVariable("codigo")String codigo, Model model){
         
         model.addAttribute("curso",cursoModel.obtenerCurso(codigo));  
-        model.addAttribute("listarCurso",cursoModel.listarCursos());
+        model.addAttribute("listarCursos",cursoModel.listarCursos());
         model.addAttribute("listarRoles",rolModel.listarRoles());
+        model.addAttribute("listarProveedores",proveedorModel.listarProveedores());
         return "cursos/listar";
     }
     @RequestMapping(value="edit/{codigo}",method = RequestMethod.POST)
     public String modificarCurso(Curso usuario, Model model,RedirectAttributes atributos){
         model.addAttribute("listarCursos",cursoModel.listarCursos());
         model.addAttribute("listarRoles",rolModel.listarRoles());
+        model.addAttribute("listarProveedores",proveedorModel.listarProveedores());
         //usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         if(cursoModel.modificarCurso(usuario)>0){
             atributos.addFlashAttribute("Exito","Curso modificado con exito");

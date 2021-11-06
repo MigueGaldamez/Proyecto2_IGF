@@ -40,7 +40,7 @@
                <a class="nav-link" href="#">Programas</a>
              </li>
               <li class="nav-item">
-               <a class="nav-link " href="#">Cursos</a>
+               <a class="nav-link " href="<spring:url value="/cursos/list"/>">Cursos</a>
              </li>
              <li class="nav-item">
                <a class="nav-link active" href="<spring:url value="/gastos/list"/>">Gastos</a>
