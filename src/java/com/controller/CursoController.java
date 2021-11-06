@@ -7,7 +7,9 @@ package com.controller;
 
 import com.entities.Curso;
 import com.model.CursoModel;
+import com.model.ProgramasModel;
 import com.model.ProveedorModel;
+import com.model.LocalModel;
 import com.model.RolModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,8 @@ public class CursoController {
     CursoModel cursoModel = new CursoModel();
     RolModel rolModel = new RolModel();
     ProveedorModel proveedorModel = new ProveedorModel();
+    ProgramasModel programaModel = new ProgramasModel();
+    LocalModel localModel = new LocalModel();
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     
     @RequestMapping(value={"list"})
@@ -32,6 +36,8 @@ public class CursoController {
         model.addAttribute("listarCursos",cursoModel.listarCursos());
         model.addAttribute("listarRoles",rolModel.listarRoles());//Este aqui no te sirve de nada
         model.addAttribute("listarProveedores",proveedorModel.listarProveedores());
+        model.addAttribute("listarProgramas",programaModel.listarProgramas());
+         model.addAttribute("listarLocales",localModel.listarLocales());
         model.addAttribute("curso",new Curso());
         return "cursos/listar";
     }
@@ -40,6 +46,8 @@ public class CursoController {
         model.addAttribute("listarCurso",cursoModel.listarCursos());
         model.addAttribute("listarRoles",rolModel.listarRoles());
         model.addAttribute("listarProveedores",proveedorModel.listarProveedores());
+        model.addAttribute("listarProgramas",programaModel.listarProgramas());
+        model.addAttribute("listarLocales",localModel.listarLocales());
         //curso.setPassword(passwordEncoder.encode(curso.getPassword()));
         if(cursoModel.insertarCurso(curso)>0){
             atributos.addFlashAttribute("Exito","Curso registrado con exito");
@@ -58,20 +66,24 @@ public class CursoController {
         model.addAttribute("listarCursos",cursoModel.listarCursos());
         model.addAttribute("listarRoles",rolModel.listarRoles());
         model.addAttribute("listarProveedores",proveedorModel.listarProveedores());
+        model.addAttribute("listarProgramas",programaModel.listarProgramas());
+        model.addAttribute("listarLocales",localModel.listarLocales());
         return "cursos/listar";
     }
     @RequestMapping(value="edit/{codigo}",method = RequestMethod.POST)
-    public String modificarCurso(Curso usuario, Model model,RedirectAttributes atributos){
+    public String modificarCurso(Curso curso, Model model,RedirectAttributes atributos){
         model.addAttribute("listarCursos",cursoModel.listarCursos());
         model.addAttribute("listarRoles",rolModel.listarRoles());
         model.addAttribute("listarProveedores",proveedorModel.listarProveedores());
+        model.addAttribute("listarProgramas",programaModel.listarProgramas());
+        model.addAttribute("listarLocales",localModel.listarLocales());
         //usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
-        if(cursoModel.modificarCurso(usuario)>0){
+        if(cursoModel.modificarCurso(curso)>0){
             atributos.addFlashAttribute("Exito","Curso modificado con exito");
             return "redirect:/cursos/list/";
         }
         else{
-            model.addAttribute("usuario",usuario);
+            model.addAttribute("curso",curso);
             return "cursos/listar";
         }
         

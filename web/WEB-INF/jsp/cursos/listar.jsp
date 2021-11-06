@@ -2,6 +2,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,7 @@
     <body>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal"  data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
+          <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Agregar Curso</h5>
@@ -22,12 +23,11 @@
                 
               </div>
                   <form:form action="create" method="POST" modelAttribute="curso">
-              <div class="modal-body">
+              <div class="modal-body px-4">
                 <div class="row">
-                <div class=" col">
-                  
-                      
+                   
                         <c:if test="${!empty curso.nombreCurso}">
+                             <div class=" col-12">
                             <div class="form-group">
                                 <label for="idCurso">Codigo del Curso:</label>
                                 <div class="input-group">
@@ -36,35 +36,52 @@
                                    class="glyphicon glyphicon-asterisk"></span></span>
                                 </div>
                             </div>
+                            </div>
                         </c:if>
-                        
+                    
+                     <div class=" col-6">
                         <div class="form-group">
                             <label for="curso">Curso prerequisito:</label>
                             <div class="input-group">
-                                <form:input path="curso.idCurso" cssClass="form-control"/>
-                                <span class="input-group-addon"><span
-                               class="glyphicon glyphicon-asterisk"></span></span>
+                                <form:select path="curso.idCurso" class="form-select" aria-label="Default select example">
+                                    <option selected disabled >Menú de Curso</option>
+                                    <option value="0"
+                                        <c:if test="${ curso.curso.idCurso == 0 }">
+                                            selected="selected"
+                                        </c:if>>Sin prerequisito</option>
+                                    <c:forEach items="${listarCursos}" var="Curso">
+
+                                        <option value="${Curso.idCurso}"
+                                                <c:if test="${ curso.curso.idCurso == Curso.idCurso }">
+                                                    selected="selected"
+                                                </c:if>>${Curso.nombreCurso}</option>
+                                    </c:forEach>
+
+                                </form:select>
                             </div>
                         </div>
-                                
+                     </div>     
+                     <div class=" col-6">
                         <div class="form-group">
-                                 <label for="local">Local</label>
-                                 <div class="input-group">
+                            <label for="local">Local</label>
+                            <div class="input-group">
 
-                                     <form:select path="local.idLocal" class="form-select" aria-label="Default select example">
-                                         <option selected disabled >Menú de Local</option>
+                                <form:select path="local.idLocal" class="form-select" aria-label="Default select example">
+                                    <option selected disabled >Menú de Local</option>
 
-                                         <c:forEach items="${listarLocal}" var="local">
+                                    <c:forEach items="${listarLocales}" var="Local">
 
-                                             <option value="${Local.idLocal}"
-                                                     <c:if test="${ curso.local.nombreLocal == Local.idLocal }">
-                                                         selected="selected"
-                                                     </c:if>>${Local.nombreLocal}</option>
-                                         </c:forEach>
+                                        <option value="${Local.idLocal}"
+                                                <c:if test="${ curso.local.idLocal == Local.idLocal }">
+                                                    selected="selected"
+                                                </c:if>>${Local.nombreLocal}</option>
+                                    </c:forEach>
 
-                                     </form:select>
-                                 </div>
+                                </form:select>
+                            </div>
                         </div>
+                     </div>     
+                     <div class=" col-6">
                         <div class="form-group">
                                  <label for="programa">Programa</label>
                                  <div class="input-group">
@@ -72,10 +89,10 @@
                                      <form:select path="programa.idPrograma" class="form-select" aria-label="Default select example">
                                          <option selected disabled >Menú de Programa</option>
 
-                                         <c:forEach items="${listarPrograma}" var="programa">
+                                         <c:forEach items="${listarProgramas}" var="Programa">
 
                                              <option value="${Programa.idPrograma}"
-                                                     <c:if test="${ curso.programa.nombrePrograma == Programa.idPrograma }">
+                                                     <c:if test="${ curso.programa.idPrograma == Programa.idPrograma }">
                                                          selected="selected"
                                                      </c:if>>${Programa.nombrePrograma}</option>
                                          </c:forEach>
@@ -83,7 +100,8 @@
                                      </form:select>
                                  </div>
                         </div>  
-                       
+                      </div>       
+                      <div class=" col-6">
                         <div class="form-group">
                                  <label for="proveedor">proveedor</label>
                                  <div class="input-group">
@@ -102,43 +120,49 @@
                                      </form:select>
                                  </div>
                         </div>  
-                        <div class="form-group">
-                            <label for="nombreCurso">Nombre de curso </label>
-                           <div class="input-group">
-                                <form:input path="nombreCurso" cssClass="form-control"/>
-                               <span class="input-group-addon"><span
-                               class="glyphicon glyphicon-asterisk"></span></span>
+                      </div>
+                        <div class=" col-6">
+                            <div class="form-group">
+                                <label for="nombreCurso">Nombre de curso </label>
+                               <div class="input-group">
+                                    <form:input path="nombreCurso" cssClass="form-control"/>
+                                   <span class="input-group-addon"><span
+                                   class="glyphicon glyphicon-asterisk"></span></span>
+                                </div>
                             </div>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="descripcionCurso">Descripcion Curso </label>
-                           <div class="input-group">
-                                <form:input path="descripcionCurso" cssClass="form-control"/>
-                               <span class="input-group-addon"><span
-                               class="glyphicon glyphicon-asterisk"></span></span>
+                        <div class=" col-6">
+                            <div class="form-group">
+                                <label for="descripcionCurso">Descripcion Curso </label>
+                               <div class="input-group">
+                                    <form:input path="descripcionCurso" cssClass="form-control"/>
+                                   <span class="input-group-addon"><span
+                                   class="glyphicon glyphicon-asterisk"></span></span>
+                                </div>
+                            </div> 
+                         </div>
+                         <div class=" col-4">
+                             <div class="form-group">
+                                <label for="estadoCurso">Estado:</label>
+                                <div class="input-group">
+                                    <form:select path="estadoCurso" id="estadoCurso" class="form-select" aria-label="Default select example">
+                                        <option value="0">Activo</option>
+                                        <option value="1">Inactivo</option>
+                                    </form:select>
+                                </div>
                             </div>
-                        </div> 
-                               
-                        <div class="form-group">
-                                        <label for="estadoCurso">Estado:</label>
-                                        <div class="input-group">
-                                            <form:select path="estadoCurso" id="estadoCurso" class="form-select" aria-label="Default select example">
-                                                <option value="0">Activo</option>
-                                                <option value="1">Inactivo</option>
-                                            </form:select>
-                                        </div>
-                        </div>
-                               
-                        <div class="form-group">
-                            <label for="duracionHoras"> duracion en hrs</label>
-                           <div class="input-group">
-                                <form:input path="duracionHoras" cssClass="form-control"/>
-                               <span class="input-group-addon"><span
-                               class="glyphicon glyphicon-asterisk"></span></span>
+                         </div>
+                        <div class=" col-4"> 
+                            <div class="form-group">
+                                <label for="duracionHoras"> duracion en hrs</label>
+                               <div class="input-group">
+                                    <form:input path="duracionHoras" cssClass="form-control"/>
+                                   <span class="input-group-addon"><span
+                                   class="glyphicon glyphicon-asterisk"></span></span>
+                                </div>
                             </div>
-                        </div>
-                               
+                        </div>    
+                        <div class=" col-4"> 
                         <div class="form-group">
                             <label for="requisitos"> Requisitos</label>
                            <div class="input-group">
@@ -147,7 +171,8 @@
                                class="glyphicon glyphicon-asterisk"></span></span>
                             </div>
                         </div>   
-                        
+                        </div>
+                        <div class=" col-6"> 
                         <div class="form-group">
                             <label for="cupo"> Cupo </label>
                            <div class="input-group">
@@ -156,6 +181,10 @@
                                class="glyphicon glyphicon-asterisk"></span></span>
                             </div>
                         </div>
+                                 <c:set var="now" value="<%=new java.util.Date()%>" />
+                                <fmt:formatDate pattern="yyyy-MM-dd" value="${now}" var="now"/>
+                        </div>
+                         <div class=" col-6"> 
                         <div class="form-group">
                             <label for="fechaCreacion"> Fecha Creacion </label>
                             <div class="input-group">
@@ -165,38 +194,47 @@
                                      min="2021-01-01" max="2021-12-31"></form:input>      
                             </div>
                         </div>
-                       
-                        <div class="form-group">      
-                            <label for="fechaInicioInscripcion">Fecha Inicio Incripcion</label>
-                        <div class="input-group">
-                        <form:input path="fechaInicioInscripcion" id="fechaInicioInscripcion"  type="date" name="fechaInicioInscripcion" class="form-control"
-                                     value="${now}"
-                                     min="2021-01-01" max="2021-12-31"></form:input>
+                        </div>
+                             
+                         <div class=" col-6"> 
+                            <div class="form-group">      
+                                <label for="fechaInicioInscripcion">Fecha Inicio Incripcion</label>
+                            <div class="input-group">
+                            <form:input path="fechaInicioInscripcion" id="fechaInicioInscripcion"  type="date" name="fechaInicioInscripcion" class="form-control"
+                                           value="${now}"
+                                         min="01-01-2021" max="31-12-2021"></form:input>
+                                </div>
+                            </div>
+                         </div>
+                        <div class=" col-6"> 
+                                <div class="form-group">         
+                                <label for="fechaFinInscripcion">Fecha Fin Incripcion</label>
+                                <div class="input-group">
+                                <form:input path="fechaFinInscripcion" id="fechaFinInscripcion"  type="date" name="fechaFinInscripcion" class="form-control"
+                                             value="${now}"
+                                             min="2021-01-01" max="2021-12-31"></form:input>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">         
-                        <label for="fechaFinInscripcion">Fecha Fin Incripcion</label>
-                        <div class="input-group">
-                        <form:input path="fechaFinInscripcion" id="fechaFinInscripcion"  type="date" name="fechaFinInscripcion" class="form-control"
-                                     value="${now}"
-                                     min="2021-01-01" max="2021-12-31"></form:input>
-                        </div>
-                        </div>
-                               <div class="form-group">  
-                        <label for="fechaInicio">Fecha Inicio</label>
-                        <div class="input-group">
-                        <form:input path="fechaInicio" id="fechaInicio"  type="date" name="fechaInicio" class="form-control" 
-                                     value="${now}"
-                                     min="2021-01-01" max="2021-12-31"></form:input>
-                        </div>
-                        </div>
-                               <div class="form-group">  
-                        <label for="fechaFin">Fecha Fin</label>
-                        <div class="input-group">
-                        <form:input path="fechaFin" id="fechaFin"  type="date" name="fechaFin" class="form-control"
-                                     value="${now}"
-                                     min="2021-01-01" max="2021-12-31"></form:input> 
-                        </div>
+                        <div class=" col-6"> 
+                            <div class="form-group">  
+                                <label for="fechaInicio">Fecha Inicio</label>
+                                <div class="input-group">
+                                <form:input path="fechaInicio" id="fechaInicio"  type="date" name="fechaInicio" class="form-control" 
+                                             value="${now}"
+                                             min="2021-01-01" max="2021-12-31"></form:input>
+                                </div>
+                            </div>
+                         </div>
+                         <div class=" col-6"> 
+                            <div class="form-group">  
+                                <label for="fechaFin">Fecha Fin</label>
+                                <div class="input-group">
+                                <form:input path="fechaFin" id="fechaFin"  type="date" name="fechaFin" class="form-control"
+                                             value="${now}"
+                                             min="2021-01-01" max="2021-12-31"></form:input> 
+                                </div>
+                             </div>
                         </div>
                         
                         
@@ -284,13 +322,13 @@
                                     <td>${Curso.duracionHoras}</td>
                                     <td>${Curso.requisitos}</td>
                                     <td>${Curso.cupo}</td>
-                                    <td>${Curso.fechaCreacion}</td>
+                                    <td><fmt:formatDate pattern="dd-MM-yyyy" value="${Curso.fechaCreacion}" /></td>
                                    
                                     
-                                    <td>${Curso.fechaInicioInscripcion}</td>
-                                    <td>${Curso.fechaFinInscripcion}</td>
-                                    <td>${Curso.fechaInicio}</td>
-                                    <td>${Curso.fechaFin}</td>
+                                    <td><fmt:formatDate pattern="dd-MM-yyyy" value="${Curso.fechaInicioInscripcion}" /> </td>
+                                    <td><fmt:formatDate pattern="dd-MM-yyyy" value="${Curso.fechaFinInscripcion}" /></td>
+                                    <td><fmt:formatDate pattern="dd-MM-yyyy" value="${Curso.fechaInicio}" /></td>
+                                    <td><fmt:formatDate pattern="dd-MM-yyyy" value="${Curso.fechaFin}" /></td>
                                     <td colspan="2">
                                         <a class="btn btn-success btn-sm" id="botonEditar" href="<spring:url value="/cursos/edit/${Curso.idCurso}"/>">
                                         <span class="glyphicon glyphicon-edit"></span>Editar</a>
