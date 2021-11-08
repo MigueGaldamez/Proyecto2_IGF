@@ -41,64 +41,25 @@
                             </div>
                         </c:if>
                         <div class="form-group">
-                            <label for="nombreUsuario">Nombre del Usuario:</label>
+                            <label for="curso">Nombre del Usuario:</label>
                             <div class="input-group">
-                                <form:input path="nombreUsuario" cssClass="form-control"/>
+                                <form:input path="curso" cssClass="form-control"/>
                                 <span class="input-group-addon"><span
                                class="glyphicon glyphicon-asterisk"></span></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="apellidoUsuario">Apellido del Usuario:</label>
+                            <label for="participante">Apellido del Usuario:</label>
                            <div class="input-group">
-                                <form:input path="apellidoUsuario" cssClass="form-control"/>
+                                <form:input path="participante" cssClass="form-control"/>
                                <span class="input-group-addon"><span
                                class="glyphicon glyphicon-asterisk"></span></span>
                             </div>
                         </div>
                       
-                         <div class="form-group">
-                            <label for="rol">Rol Usuario:</label>
-                            <div class="input-group">
-                              
-                                <form:select path="rol.idRol" id="rol.idRol" class="form-select" aria-label="Default select example">
-                                    <option selected disabled >Menú de Roles</option>
-                                
-                                    <c:forEach items="${listarRoles}" var="Rol">
-                                         
-                                            <option value="${Rol.idRol}"
-                                                     <c:if test="${ usuario.rol.idRol == Rol.idRol }">
-                                               selected="selected"
-                                            </c:if>>${Rol.nombreRol}</option>
-                                    </c:forEach>
-                                
-                                </form:select>
-                            </div>
-                        </div>
-                         <div class="form-group">
-                            <label for="username">Nombre Usuario:</label>
-                           <div class="input-group">
-                                <form:input path="username" cssClass="form-control"/>
-                               <span class="input-group-addon"><span
-                               class="glyphicon glyphicon-asterisk"></span></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Contraseña:</label>
-                           <div class="input-group">
-                                <form:input path="password" cssClass="form-control" type="password"/>
-                               <span class="input-group-addon"><span
-                               class="glyphicon glyphicon-asterisk"></span></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Correo:</label>
-                           <div class="input-group">
-                                <form:input path="email" cssClass="form-control"/>
-                               <span class="input-group-addon"><span
-                               class="glyphicon glyphicon-asterisk"></span></span>
-                            </div>
-                        </div>
+                         
+                        
+                     
           es
                 </div>
             </div>  
