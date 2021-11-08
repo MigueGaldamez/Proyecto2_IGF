@@ -18,11 +18,11 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Registrar Usuario</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
                 <a type="button" class="btn-close" href="<spring:url value="/inscripciones/list/"/>"></a>
                 
               </div>
-                  <form:form action="create" method="POST" modelAttribute="usuario">
+                  <form:form action="create" method="POST" modelAttribute="incripcion_curso">
               <div class="modal-body">
                 <div class="row">
                 <div class=" col">
@@ -30,11 +30,11 @@
                         <div class="well well-sm">
                             <strong><span class="glyphicon glyphicon-asterisk"></span>Campos requeridos</strong>
                         </div>
-                        <c:if test="${!empty usuario.nombreUsuario}">
+                        <c:if test="${!empty incripcion_curso.fechaInscripcion}">
                             <div class="form-group">
-                                <label for="idUsuario">Codigo del usuario:</label>
+                                <label for="idInscripcion">Codigo del curso</label>
                                 <div class="input-group">
-                                    <form:input path="idUsuario" cssClass="form-control"/>
+                                    <form:input path="idInscripcion" cssClass="form-control"/>
                                     <span class="input-group-addon"><span
                                    class="glyphicon glyphicon-asterisk"></span></span>
                                 </div>
@@ -99,7 +99,7 @@
                                class="glyphicon glyphicon-asterisk"></span></span>
                             </div>
                         </div>
-          
+          es
                 </div>
             </div>  
               </div>

@@ -42,7 +42,7 @@ public class Usuario  implements java.io.Serializable {
        this.apellidoUsuario = apellidoUsuario;
        this.username = username;
        this.password = password;
-       this.email = email;
+       this.email = email; 
     }
    
      @Id 

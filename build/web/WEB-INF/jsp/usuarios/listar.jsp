@@ -18,8 +18,8 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
-                <a type="button" class="btn-close" href="<spring:url value="/usuarios/list/"/>"></a>
+                <h5 class="modal-title" id="exampleModalLabel">Registrar Usuario</h5>
+                <a type="button" class="btn-close" href="<spring:url value="/inscripciones/list/"/>"></a>
                 
               </div>
                   <form:form action="create" method="POST" modelAttribute="usuario">
