@@ -78,6 +78,9 @@
             </li>
              
              
+             <li class="nav-item">
+               <a class="nav-link" href="<spring:url value="/participantes/list"/>">Participante</a>
+             </li>
         </c:if>
         <c:if test="${empty usr}">
              <li class="nav-item">

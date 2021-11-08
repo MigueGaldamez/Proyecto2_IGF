@@ -125,7 +125,7 @@
         <div class="container">
             <div class="my-3">
                 <div class="row mt-2">
-                    <h3>Lista de Usuarios</h3>
+                    <h3>Lista de Participantes</h3>
                 </div>
                 <!--Inicio boton modal-->
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -141,10 +141,10 @@
                     <table class="table table-striped table-bordered table-hover table-sm text-center" id="tabla">
                         <thead class="table-dark">
                             <tr>
-                                <th>Codigo Usuario</th>
-                                <th>Nombre Usuario</th>
-                                <th>Apellido Usuario</th>
-                                <th>Rol</th>
+                               <th>Id Participante</th>
+                               <th>Nombre Usuario</th>
+                               <th>Apellido Usuario</th>
+                               <th>Rol</th>
                                 <th>Alias Usuario</th>
                                 <th>Correo</th>
                                 <th>Operaciones</th>
