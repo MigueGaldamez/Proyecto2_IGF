@@ -5,20 +5,24 @@
  */
 package com.model;
 
-import com.entities.Curso;
+import com.entities.IncripcionCurso;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-public class CursoModel {
-        SessionFactory factory = HibernateUtil.getSessionFactory();
+/**
+ *
+ * @author Migue Galdamez
+ */
+public class IncripcionCursoModel {
+    SessionFactory factory = HibernateUtil.getSessionFactory();
 
-     public int insertarCurso(Curso usuario) {
+     public int insertarIncripcionCurso(IncripcionCurso incripcion_curso) {
         Session ses = factory.openSession();
         try {
             Transaction tran = ses.beginTransaction();
-            ses.save(usuario);
+            ses.save(incripcion_curso);
             tran.commit();
             ses.close();
             return 1;
@@ -27,13 +31,13 @@ public class CursoModel {
             return 0;
         }
      }
-     public  List<Curso> listarCursos(){
+     public List<IncripcionCurso> listarIncripcionCursos(){
 
         Session ses= factory.openSession();
-        Query consulta= ses.createQuery("SELECT e FROM Curso e");
+        Query consulta= ses.createQuery("SELECT e FROM IncripcionCurso e");
         try{
 
-        List<Curso> lista= consulta.list();
+        List<IncripcionCurso> lista= consulta.list();
         ses.close();
         return lista;
 
@@ -43,27 +47,27 @@ public class CursoModel {
         return null;
         }
      }
-     public Curso obtenerCurso(String codigo) {
+     public IncripcionCurso obtenerIncripcionCurso(String codigo) {
         Session ses= factory.openSession();
         try{
             int codigoI = Integer.parseInt(codigo);
-            Curso usuario= (Curso) ses.get(Curso.class,codigoI);
+            IncripcionCurso IncripcionCurso= (IncripcionCurso) ses.get(IncripcionCurso.class,codigoI);
             ses.close();
-            return usuario;
+            return IncripcionCurso;
         }
         catch(Exception e){
             ses.close();
             return null;
         }
      }
-      public Curso obtenerCursoPorCorreo(String correo) {
+      public IncripcionCurso obtenerIncripcionCursoPorCorreo(String correo) {
         Session ses= factory.openSession();
         try{
-            Query query = ses.createQuery("FROM Curso e  where e.email = :email").setParameter("email", correo);            
+            Query query = ses.createQuery("FROM incripcion_curso e  where e.email = :email").setParameter("email", correo);            
             List lista = query.list();
-            Curso usuario =(Curso) lista.get(0);
+            IncripcionCurso IncripcionCurso =(IncripcionCurso) lista.get(0);
             ses.close();
-            return usuario;
+            return IncripcionCurso;
         }
         catch(Exception e){
         ses.close();
@@ -71,11 +75,11 @@ public class CursoModel {
         }
 
     }
-     public int modificarCurso(Curso usuario) {
+     public int modificarIncripcionCurso(IncripcionCurso IncripcionCurso) {
         Session ses = factory.openSession();
         try {
             Transaction tran = ses.beginTransaction();
-            ses.update(usuario);
+            ses.update(IncripcionCurso);
             tran.commit();
             ses.close();
             return 1;
@@ -84,16 +88,16 @@ public class CursoModel {
             return 0;
         }
      }
-     public int eliminarCurso(String id){
+     public int eliminarIncripcionCurso(String id){
         int filasAfectadas=0;
         Session ses= factory.openSession();
         int codigoI = Integer.parseInt(id);
 
         try{
-        Curso usuario= (Curso) ses.get(Curso.class,codigoI);
-            if(usuario!=null){
+        IncripcionCurso IncripcionCurso= (IncripcionCurso) ses.get(IncripcionCurso.class,codigoI);
+            if(IncripcionCurso!=null){
                 Transaction tran= ses.beginTransaction();
-                ses.delete(usuario);
+                ses.delete(IncripcionCurso);
                 tran.commit();
                 filasAfectadas=1;
             }
@@ -105,4 +109,5 @@ public class CursoModel {
             return filasAfectadas;
         }
      }
+    
 }

@@ -18,11 +18,19 @@
     <body>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal"  data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<<<<<<< HEAD
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Registrar Usuario</h5>
+                <a type="button" class="btn-close" href="<spring:url value="/inscripciones/list/"/>"></a>
+=======
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
                         <a type="button" class="btn-close" href="<spring:url value="/usuarios/list/"/>"></a>
+>>>>>>> 1222f4aa852a1d626bcf548059e97886de665251
                 
                     </div>
                     <form:form action="create" method="POST" modelAttribute="usuario">
