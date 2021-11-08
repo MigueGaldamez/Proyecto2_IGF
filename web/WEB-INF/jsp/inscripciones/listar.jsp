@@ -22,7 +22,7 @@
                 <a type="button" class="btn-close" href="<spring:url value="/inscripciones/list/"/>"></a>
                 
               </div>
-                  <form:form action="create" method="POST" modelAttribute="incripcion_curso">
+                  <form:form action="create" method="POST" modelAttribute="incripcionCurso">
               <div class="modal-body">
                 <div class="row">
                 <div class=" col">

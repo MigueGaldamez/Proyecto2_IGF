@@ -34,7 +34,7 @@ public class IncripcionCursoModel {
      public List<IncripcionCurso> listarIncripcionCursos(){
 
         Session ses= factory.openSession();
-        Query consulta= ses.createQuery("SELECT e FROM incripcion_curso e");
+        Query consulta= ses.createQuery("SELECT e FROM IncripcionCurso e");
         try{
 
         List<IncripcionCurso> lista= consulta.list();

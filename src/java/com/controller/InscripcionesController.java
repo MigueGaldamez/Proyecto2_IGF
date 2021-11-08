@@ -7,8 +7,10 @@ package com.controller;
 
 
 import com.entities.IncripcionCurso;
+import com.model.CursoModel;
 import com.model.RolModel;
 import com.model.IncripcionCursoModel;
+import com.model.UsuarioModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,20 +28,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class InscripcionesController {
     IncripcionCursoModel incripcionCursoModel = new IncripcionCursoModel();
     UsuarioModel usuarioModel = new UsuarioModel();
+    CursoModel cursoModel = new CursoModel();
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     
     @RequestMapping(value={"list"})
     public String listarInscripcionCursos(Model model){
         
         model.addAttribute("listarInscripcionCursos",incripcionCursoModel.listarIncripcionCursos());
-        model.addAttribute("listarRoles",usuarioModel.listarRoles());
+        model.addAttribute("listarCursos",cursoModel.listarCursos());
         model.addAttribute("incripcionCurso",new IncripcionCurso());
         return "inscripciones/listar";
     }
     @RequestMapping(value={"create","list/create"},method = RequestMethod.POST)
     public String insertarIncripcionCurso(@ModelAttribute("incripcionCurso")IncripcionCurso incripcionCurso, Model model,RedirectAttributes atributos){
         model.addAttribute("listarIncripcionCursos",incripcionCursoModel.listarIncripcionCursos());
-        model.addAttribute("listarRoles",cursoModel.listarCursos());
+        model.addAttribute("listarCursos",cursoModel.listarCursos());
         if(incripcionCursoModel.insertarIncripcionCurso(incripcionCurso)>0){
             atributos.addFlashAttribute("Exito","incripcionCurso registrado con exito");
             return "redirect:/inscripciones/list/";
@@ -55,13 +58,13 @@ public class InscripcionesController {
         
         model.addAttribute("incripcionCurso",incripcionCursoModel.obtenerIncripcionCurso(codigo));  
         model.addAttribute("listarincripcionCursos",incripcionCursoModel.listarIncripcionCursos());
-        model.addAttribute("listarRoles",rolModel.listarRoles());
+        model.addAttribute("listarCursos",cursoModel.listarCursos());
         return "inscripciones/listar";
     }
     @RequestMapping(value="edit/{codigo}",method = RequestMethod.POST)
     public String modificarIncripcionCurso(IncripcionCurso incripcionCurso, Model model,RedirectAttributes atributos){
         model.addAttribute("listarIncripcionCursos",incripcionCursoModel.listarIncripcionCursos());
-        model.addAttribute("listarRoles",rolModel.listarRoles());
+        model.addAttribute("listarCursos",cursoModel.listarCursos());
         if(incripcionCursoModel.modificarIncripcionCurso(incripcionCurso)>0){
             atributos.addFlashAttribute("Exito","incripcionCurso modificado con exito");
             return "redirect:/inscripciones/list/";
