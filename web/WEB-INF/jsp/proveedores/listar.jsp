@@ -77,8 +77,8 @@
                                         <label for="estadoProveedor">Estado:</label>
                                         <div class="input-group">
                                             <form:select path="estadoProveedor" id="estadoProveedor" class="form-select" aria-label="Default select example">
-                                                <option value="0">Activo</option>
-                                                <option value="1">Inactivo</option>
+                                                <option value="0">Inactivo</option>
+                                                <option value="1">Activo</option>
                                             </form:select>
                                         </div>
                                     </div>
@@ -89,8 +89,8 @@
                                         <label for="tipoProveedor">Tipo:</label>
                                         <div class="input-group">
                                             <form:select path="tipoProveedor" id="tipoProveedor" class="form-select" aria-label="Default select example">
-                                                <option value="0">Activo</option>
-                                                <option value="1">Inactivo</option>
+                                                <option value="0">Organización</option>
+                                                <option value="1">Asesor</option>
                                             </form:select>
                                         </div>
                                     </div>   
@@ -152,18 +152,18 @@
                                     <td>${Proveedor.correoProveedor}</td>
                                     <td>
                                         <c:if test="${Proveedor.estadoProveedor}">
-                                            Inactivo
+                                            Activo
                                         </c:if>
                                         <c:if test="${!Proveedor.estadoProveedor}">
-                                            Activo
+                                            Inactivo
                                         </c:if>
                                     </td>
                                     <td>
                                         <c:if test="${Proveedor.tipoProveedor}">
-                                            Inactivo
+                                            Asesor independiente
                                         </c:if>
                                         <c:if test="${!Proveedor.tipoProveedor}">
-                                            Activo
+                                            Organización
                                         </c:if>
                                     </td>
                                     <td colspan="2">
@@ -189,7 +189,9 @@
                 ;
             }
             $(document).ready(function () {
-
+                
+                $('#proveedores_nav').addClass('active');
+                
                 var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
                     keyboard: false
                 });

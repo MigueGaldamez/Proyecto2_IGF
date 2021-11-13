@@ -38,7 +38,9 @@ public class PresupuestoModel {
     }
 
   
-    public Presupuesto listarDetallesPresupuestoSeleccionado(int idPresupuesto){
+    public Presupuesto listarDetallesPresupuestoSeleccionado(String id){
+        
+        int idPresupuesto = Integer.parseInt(id);
         Session ses = factory.openSession();
         Query consulta = ses.createQuery("SELECT e FROM Presupuesto e WHERE id_presupuesto = "+idPresupuesto);
         

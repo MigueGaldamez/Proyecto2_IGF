@@ -26,7 +26,7 @@ public class PresupuestoController {
     PresupuestoModel presupuestoModel = new PresupuestoModel();
     
     @RequestMapping(value="detalles")
-    public String listarDetallesPresupuestoSeleccionado(@RequestParam("id") int id,Model model){
+    public String listarDetallesPresupuestoSeleccionado(@RequestParam("id") String id,Model model){
         double totalGastos = 0;
         double totalFinanciamientos = 0;
         

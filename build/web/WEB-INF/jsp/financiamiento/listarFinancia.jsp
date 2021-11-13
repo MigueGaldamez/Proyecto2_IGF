@@ -138,6 +138,9 @@
              }
         $(document).ready(function(){
            
+           $('#administracion_nav').addClass('active');
+           $('#financiamientos_nav').addClass('active');
+           
             var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
                 keyboard: false
               });

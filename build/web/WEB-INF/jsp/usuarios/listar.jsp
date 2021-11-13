@@ -184,6 +184,9 @@
                 };
                 }
         $(document).ready(function(){
+            
+            $('#acceso_nav').addClass('active');
+            $('#usuario_nav').addClass('active');
 
                 var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
                     keyboard: false
