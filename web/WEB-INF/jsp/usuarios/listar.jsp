@@ -22,7 +22,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Agregar Usuario</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Usuario</h5>
                         <a type="button" class="btn-close" href="<spring:url value="/usuarios/list/"/>"></a>
 
                 
@@ -37,9 +37,8 @@
                                     </div>
                                     <c:if test="${!empty usuario.nombreUsuario}">
                                         <div class="form-group">
-                                            <label for="idUsuario">Codigo del usuario:</label>
                                             <div class="input-group">
-                                                <form:input path="idUsuario" cssClass="form-control"/>
+                                                <form:input type="hidden" path="idUsuario" cssClass="form-control"/>
                                                 <span class="input-group-addon"><span
                                                         class="glyphicon glyphicon-asterisk"></span></span>
                                             </div>
@@ -91,7 +90,7 @@
                                     <div class="form-group">
                                         <label for="password">Contraseña:</label>
                                         <div class="input-group">
-                                            <form:input path="password" cssClass="form-control" type="password"/>
+                                            <form:input id="password" path="password" cssClass="form-control" type="password" value=""/>
                                             <span class="input-group-addon"><span
                                                     class="glyphicon glyphicon-asterisk"></span></span>
                                         </div>
@@ -127,7 +126,7 @@
         <div class="container">
             <div class="my-3">
                 <div class="row mt-2">
-                    <h3>Lista de Participantes</h3>
+                    <h3>Lista de Usuarios</h3>
                 </div>
                 <!--Inicio boton modal-->
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -143,7 +142,6 @@
                     <table class="table table-striped table-bordered table-hover table-sm text-center" id="tabla">
                         <thead class="table-dark">
                             <tr>
-                               <th>Id Participante</th>
                                <th>Nombre Usuario</th>
                                <th>Apellido Usuario</th>
                                <th>Rol</th>
@@ -156,7 +154,6 @@
                             <c:forEach items="${listarUsuarios}" var="Usuario">
                                 <tr>
 
-                                    <td>${Usuario.idUsuario}</td>
                                     <td>${Usuario.nombreUsuario}</td>
                                     <td>${Usuario.apellidoUsuario}</td>
                                     <td>${Usuario.rol.nombreRol}</td>
@@ -184,7 +181,7 @@
                 };
                 }
         $(document).ready(function(){
-            
+            $('#password').val('')
             $('#acceso_nav').addClass('active');
             $('#usuario_nav').addClass('active');
 
@@ -196,7 +193,8 @@
                 var editando = document.getElementById('idUsuario');
 
             if(editando.value != ""){
-                    myModal.show()
+                    myModal.show();
+                    $('#password').val('');
                 }
             $( "#botonEditar" ).click(function() {
                     ;

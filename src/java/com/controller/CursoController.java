@@ -5,12 +5,16 @@
  */
 package com.controller;
 
+import com.entities.Usuario;
 import com.entities.Curso;
+import com.entities.Presupuesto;
 import com.model.CursoModel;
 import com.model.ProgramasModel;
 import com.model.ProveedorModel;
 import com.model.LocalModel;
 import com.model.RolModel;
+import java.util.Date;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,18 +33,30 @@ public class CursoController {
     ProgramasModel programaModel = new ProgramasModel();
     LocalModel localModel = new LocalModel();
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    Usuario user = new Usuario();
     
     @RequestMapping(value={"list"})
-    public String listarCurso(Model model){
+    public String listarCurso(Model model, HttpSession session){
         
-        model.addAttribute("listarCursos",cursoModel.listarCursos());
-        model.addAttribute("listarRoles",rolModel.listarRoles());//Este aqui no te sirve de nada
-        model.addAttribute("listarProveedores",proveedorModel.listarProveedores());
-        model.addAttribute("listarProgramas",programaModel.listarProgramas());
-         model.addAttribute("listarLocales",localModel.listarLocales());
-        model.addAttribute("curso",new Curso());
-        return "cursos/listar";
+        if (session.getAttribute("usr") == null){
+            return "redirect:/";
+        } else {
+            user = (Usuario) session.getAttribute("usr");
+            String rol = user.getRol().getNombreRol();
+            if (rol.equals("Administrador")){
+                model.addAttribute("listarCursos",cursoModel.listarCursos());
+                model.addAttribute("listarRoles",rolModel.listarRoles());//Este aqui no te sirve de nada
+                model.addAttribute("listarProveedores",proveedorModel.listarProveedores());
+                model.addAttribute("listarProgramas",programaModel.listarProgramas());
+                model.addAttribute("listarLocales",localModel.listarLocales());
+                model.addAttribute("curso",new Curso());
+                return "cursos/listar";
+            }  else {
+                return "redirect:/";
+            }
+        }
     }
+    
     @RequestMapping(value={"create","list/create"},method = RequestMethod.POST)
     public String insertarCurso(@ModelAttribute("curso")Curso curso, Model model,RedirectAttributes atributos){
         model.addAttribute("listarCurso",cursoModel.listarCursos());
@@ -50,8 +66,20 @@ public class CursoController {
         model.addAttribute("listarLocales",localModel.listarLocales());
         //curso.setPassword(passwordEncoder.encode(curso.getPassword()));
         if(cursoModel.insertarCurso(curso)>0){
-            atributos.addFlashAttribute("Exito","Curso registrado con exito");
-            return "redirect:/cursos/list/";
+            
+            int idCursoMax = cursoModel.obtenerCursoMax();
+            Curso cur = cursoModel.obtenerCurso(String.valueOf(idCursoMax));
+            Presupuesto pres = new Presupuesto();
+            pres.setCurso(cur);
+            pres.setFechaCreacion(new Date());
+            
+            if(cursoModel.insertarPresupuesto(pres)>0){
+                atributos.addFlashAttribute("Exito","Curso registrado con exito");
+                return "redirect:/cursos/list/";
+            } else {
+                model.addAttribute("curso",curso);
+                return "cursos/listar";
+            }
         }
         else{
             model.addAttribute("curso",curso);

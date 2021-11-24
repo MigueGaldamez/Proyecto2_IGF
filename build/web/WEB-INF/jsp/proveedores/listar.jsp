@@ -8,7 +8,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista de Usuarios</title>
+        <title>Lista de Proveedores</title>
         <jsp:include page="/WEB-INF/jsp/cabecera.jsp"/>
     </head>
     <jsp:include page="/WEB-INF/jsp/navbar.jsp"/>
@@ -18,7 +18,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Agregar Proveedor</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Proveedor</h5>
                         <a type="button" class="btn-close" href="<spring:url value="/proveedores/list/"/>"></a>
 
                     </div>
@@ -32,9 +32,8 @@
                                     </div>
                                     <c:if test="${!empty proveedor.nombreProveedor}">
                                         <div class="form-group">
-                                            <label for="idProveedor">Codigo del proveedor:</label>
                                             <div class="input-group">
-                                                <form:input path="idProveedor" cssClass="form-control"/>
+                                                <form:input type="hidden" path="idProveedor" cssClass="form-control"/>
                                                 <span class="input-group-addon"><span
                                                         class="glyphicon glyphicon-asterisk"></span></span>
                                             </div>
@@ -77,8 +76,14 @@
                                         <label for="estadoProveedor">Estado:</label>
                                         <div class="input-group">
                                             <form:select path="estadoProveedor" id="estadoProveedor" class="form-select" aria-label="Default select example">
-                                                <option value="0">Inactivo</option>
-                                                <option value="1">Activo</option>
+                                                <option value="0"
+                                                        <c:if test="${ proveedor.estadoProveedor == false }">
+                                                                selected="selected"
+                                                        </c:if>>Inactivo</option>
+                                                <option value="1"
+                                                        <c:if test="${ proveedor.estadoProveedor == true }">
+                                                                selected="selected"
+                                                        </c:if>>Activo</option>
                                             </form:select>
                                         </div>
                                     </div>
@@ -132,7 +137,6 @@
                     <table class="table table-striped table-bordered table-hover table-sm text-center" id="tabla">
                         <thead class="table-dark">
                             <tr>
-                                <th>Id Proveedor</th>
                                 <th>Nombre Proveedor</th>
                                 <th>Contacto Proveedor</th>
                                 <th>Telefono</th>
@@ -145,7 +149,6 @@
                         <tbody>
                             <c:forEach items="${listarProveedores}" var="Proveedor">
                                 <tr>
-                                    <td>${Proveedor.idProveedor}</td>
                                     <td>${Proveedor.nombreProveedor}</td>
                                     <td>${Proveedor.contactoProveedor}</td>
                                     <td>${Proveedor.telefonoProveedor}</td>

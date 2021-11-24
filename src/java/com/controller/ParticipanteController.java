@@ -7,8 +7,10 @@ package com.controller;
 
 import com.entities.Participante;
 import com.entities.Rol;
+import com.entities.Usuario;
 import com.model.ParticipanteModel;
 import com.model.RolModel;
+import javax.servlet.http.HttpSession;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,12 +30,23 @@ public class ParticipanteController {
     ParticipanteModel participanteModel = new ParticipanteModel();
     RolModel rolModel = new RolModel();
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    Usuario user = new Usuario();
+    
     @RequestMapping(value={"list"})
-    public String listarParticipantes(Model model){
-
-        model.addAttribute("listarParticipantes",participanteModel.listarParticipante());
-        model.addAttribute("participante",new Participante());
-        return "participantes/listar";
+    public String listarParticipantes(Model model, HttpSession session){
+        if (session.getAttribute("usr") == null){
+            return "redirect:/";
+        } else {
+            user = (Usuario) session.getAttribute("usr");
+            String rol = user.getRol().getNombreRol();
+            if (rol.equals("Secretaria") || rol.equals("Administrador")){
+                model.addAttribute("listarParticipantes",participanteModel.listarParticipante());
+                model.addAttribute("participante",new Participante());
+                return "participantes/listar";
+        } else {
+                return "redirect:/";
+            }
+        }
     }
     @RequestMapping(value={"create","list/create"},method = RequestMethod.POST)
     public String insertarParticipante(@ModelAttribute("participante")Participante participante, Model model,RedirectAttributes atributos){

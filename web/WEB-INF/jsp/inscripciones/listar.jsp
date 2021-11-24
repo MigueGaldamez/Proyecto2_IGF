@@ -19,7 +19,7 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar Inscripcion</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Inscripcion</h5>
                 <a type="button" class="btn-close" href="<spring:url value="/inscripciones/list/"/>"></a>
                 
               </div>
@@ -33,9 +33,8 @@
                         </div>
                         <c:if test="${!empty incripcionCurso.fechaInscripcion}">
                             <div class="form-group">
-                                <label for="idInscripcion">Codigo del curso</label>
                                 <div class="input-group">
-                                    <form:input path="idInscripcion" cssClass="form-control"/>
+                                    <form:input type="hidden" path="idInscripcion" cssClass="form-control"/>
                                     <span class="input-group-addon"><span
                                    class="glyphicon glyphicon-asterisk"></span></span>
                                 </div>
@@ -85,9 +84,8 @@
                             <label for="fechaInscripcion"> Fecha Inscripcion:</label>
                             <div class="input-group">
                                
-                                <form:input path="fechaInscripcion" id="fechaInscripcion"  type="date" name="fechaInscripcion" class="form-control"
-                                     value="${now}"
-                                     min="2021-01-01" max="2021-12-31"></form:input>      
+                                <form:input path="fechaInscripcion" id="fechaInscripcion" type="date" name="fechaInscripcion" class="form-control"
+                                     value="${now}"></form:input>      
                             </div>
                         </div>
                        
@@ -131,7 +129,6 @@
                     <table class="table table-striped table-bordered table-hover table-sm text-center" id="tabla">
                         <thead class="table-dark">
                             <tr>
-                               <th>Codigo</th>
                                <th>Nombre Usuario</th>
                                <th>Nombre Curso</th>
                                <th>Fecha Inscripcion</th>
@@ -142,14 +139,13 @@
                         <tbody>
                              <c:forEach items="${listarInscripcionCursos}" var="Inscripcion">
                                  <tr>
-                                    <td>${Inscripcion.idInscripcion}</td>
                                     <td>${Inscripcion.participante.nombreParticipante}</td>
                                     <td>${Inscripcion.curso.nombreCurso}</td>
                                     <td>${Inscripcion.fechaInscripcion}</td>
                                    
                                     <td colspan="2">
-                                        <a class="btn btn-success btn-sm" id="botonEditar" href="<spring:url value="/inscripciones/edit/${Inscripcion.idInscripcion}"/>">
-                                        <span class="glyphicon glyphicon-edit"></span>Editar</a>
+                                        <!--<a class="btn btn-success btn-sm" id="botonEditar" href="<spring:url value="/inscripciones/edit/${Inscripcion.idInscripcion}"/>">
+                                        <span class="glyphicon glyphicon-edit"></span>Editar</a>-->
                                          <a class="btn btn-danger btn-sm" href="javascript:eliminar('${Inscripcion.idInscripcion}')">
                                         <span class="glyphicon glyphicon-edit"></span>Eliminar</a>
                                     </td>
@@ -169,6 +165,8 @@
                 };
              }
         $(document).ready(function(){
+           $('#participantes_nav').addClass('active');
+           $('#inscripcion_nav').addClass('active');
            
             var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
                 keyboard: false

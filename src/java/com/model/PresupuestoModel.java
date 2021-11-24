@@ -5,6 +5,8 @@
  */
 package com.model;
 import com.entities.Presupuesto;
+import com.entities.DetalleFinanciamiento;
+import com.entities.DetalleGasto;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -36,7 +38,7 @@ public class PresupuestoModel {
         return null;
         }
     }
-
+    
   
     public Presupuesto listarDetallesPresupuestoSeleccionado(String id){
         

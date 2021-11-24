@@ -18,7 +18,7 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Registrar Programa</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Programa</h5>
                 <a type="button" class="btn-close" href="<spring:url value="/programas/list/"/>"></a>
 
               </div>
@@ -32,9 +32,8 @@
                         </div>
                         <c:if test="${!empty programa.nombrePrograma}">
                             <div class="form-group">
-                                <label for="idPrograma">Codigo del programa:</label>
                                 <div class="input-group">
-                                    <form:input path="idPrograma" cssClass="form-control"/>
+                                    <form:input type="hidden" path="idPrograma" cssClass="form-control"/>
                                     <span class="input-group-addon"><span
                                    class="glyphicon glyphicon-asterisk"></span></span>
                                 </div>
@@ -60,8 +59,14 @@
                                     <label for="estadoPrograma">Estado:</label>
                                     <div class="input-group">
                                         <form:select path="estadoPrograma" id="estadoPrograma" class="form-select" aria-label="Default select example">
-                                            <option value="0">Inactivo</option>
-                                            <option value="1">Activo</option>
+                                            <option value="0"
+                                                        <c:if test="${ programa.estadoPrograma == false }">
+                                                                selected="selected"
+                                                        </c:if>>Inactivo</option>
+                                                <option value="1"
+                                                        <c:if test="${ programa.estadoPrograma == true }">
+                                                                selected="selected"
+                                                        </c:if>>Activo</option>
                                         </form:select>
                                     </div>
                             </div>
@@ -102,7 +107,6 @@
                     <table class="table table-striped table-bordered table-hover table-sm text-center" id="tabla">
                         <thead class="table-dark">
                             <tr>
-                               <th>Id Programa</th>
                                <th>Nombre</th>
                                <th>Descripcion</th>
                                <th>Estado</th>
@@ -113,7 +117,6 @@
                              <c:forEach items="${listarProgramas}" var="Programa">
                                  <tr>
                                      
-                                    <td>${Programa.idPrograma}</td>
                                     <td>${Programa.nombrePrograma}</td>
                                     <td>${Programa.descripcionPrograma}</td>
                                    <td>

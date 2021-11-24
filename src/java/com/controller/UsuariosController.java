@@ -9,6 +9,7 @@ package com.controller;
 import com.entities.Usuario;
 import com.model.RolModel;
 import com.model.UsuarioModel;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,14 +28,26 @@ public class UsuariosController {
     UsuarioModel usuarioModel = new UsuarioModel();
     RolModel rolModel = new RolModel();
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    Usuario user = new Usuario();
     
     @RequestMapping(value={"list"})
-    public String listarUsuarios(Model model){
+    public String listarUsuarios(Model model, HttpSession session){
+        //String sesion = session.getId();
+        if (session.getAttribute("usr") == null){
+            return "redirect:/";
+        } else {
+            user = (Usuario) session.getAttribute("usr");
+            String rol = user.getRol().getNombreRol();
+            if (rol.equals("Administrador")){
+                model.addAttribute("listarUsuarios",usuarioModel.listarUsuarios());
+                model.addAttribute("listarRoles",rolModel.listarRoles());
+                model.addAttribute("usuario",new Usuario());
+                return "usuarios/listar";
+            } else {
+                return "redirect:/";
+            }
+        }
         
-        model.addAttribute("listarUsuarios",usuarioModel.listarUsuarios());
-        model.addAttribute("listarRoles",rolModel.listarRoles());
-        model.addAttribute("usuario",new Usuario());
-        return "usuarios/listar";
     }
     @RequestMapping(value={"create","list/create"},method = RequestMethod.POST)
     public String insertarUsuario(@ModelAttribute("usuario")Usuario usuario, Model model,RedirectAttributes atributos){

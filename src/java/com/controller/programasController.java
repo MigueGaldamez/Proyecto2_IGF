@@ -2,8 +2,10 @@
 package com.controller;
 
 import com.entities.Programa;
+import com.entities.Usuario;
 import com.model.ProgramasModel;
 import com.model.RolModel;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,15 +25,24 @@ public class programasController {
     ProgramasModel programaModel = new ProgramasModel();
     RolModel rolModel = new RolModel();
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    Usuario user = new Usuario();
     
     @RequestMapping(value={"list"})
-    
-    public String listarProgramas(Model model){
-        
-        model.addAttribute("listarProgramas",programaModel.listarProgramas());
-        model.addAttribute("listarRoles",rolModel.listarRoles());
-        model.addAttribute("programa",new Programa());
-        return "programas/listar";
+    public String listarProgramas(Model model, HttpSession session){
+        if (session.getAttribute("usr") == null){
+            return "redirect:/";
+        } else {
+            user = (Usuario) session.getAttribute("usr");
+            String rol = user.getRol().getNombreRol();
+            if (rol.equals("Administrador")){
+                model.addAttribute("listarProgramas",programaModel.listarProgramas());
+                model.addAttribute("listarRoles",rolModel.listarRoles());
+                model.addAttribute("programa",new Programa());
+                return "programas/listar";
+        } else {
+                return "redirect:/";
+            }
+        }
     }
     @RequestMapping(value={"create","list/create"},method = RequestMethod.POST)
     

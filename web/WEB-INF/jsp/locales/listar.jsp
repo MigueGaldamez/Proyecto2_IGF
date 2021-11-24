@@ -18,7 +18,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Agregar Local</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Local</h5>
                         <a type="button" class="btn-close" href="<spring:url value="/locales/list/"/>"></a>
 
                     </div>
@@ -125,7 +125,6 @@
                     <table class="table table-striped table-bordered table-hover table-sm text-center" id="tabla">
                         <thead class="table-dark">
                             <tr>
-                                <th>Id Local</th>
                                 <th>Nombre Local</th>
                                 <th>Descripcion</th>
                                 <th>Ubicacion</th>
@@ -137,7 +136,6 @@
                         <tbody>
                             <c:forEach items="${listarLocales}" var="Local">
                                 <tr>
-                                    <td>${Local.idLocal}</td>
                                     <td>${Local.nombreLocal}</td>
                                     <td>${Local.descripcionLocal}</td>
                                     <td>${Local.ubicacion}</td>

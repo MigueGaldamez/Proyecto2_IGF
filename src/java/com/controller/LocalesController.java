@@ -5,7 +5,9 @@
  */
 package com.controller;
 import com.entities.Local;
+import com.entities.Usuario;
 import com.model.LocalModel;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,13 +24,23 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("locales")
 public class LocalesController {
     LocalModel localModel = new LocalModel();
+    Usuario user = new Usuario();
     
     @RequestMapping(value={"list"})
-    public String listarLocales(Model model){
-        
-        model.addAttribute("listarLocales",localModel.listarLocales());
-        model.addAttribute("local",new Local());
-        return "locales/listar";
+    public String listarLocales(Model model, HttpSession session){
+        if (session.getAttribute("usr") == null){
+            return "redirect:/";
+        } else {
+            user = (Usuario) session.getAttribute("usr");
+            String rol = user.getRol().getNombreRol();
+            if (rol.equals("Administrador")){
+                model.addAttribute("listarLocales",localModel.listarLocales());
+                model.addAttribute("local",new Local());
+                return "locales/listar";
+        } else {
+                return "redirect:/";
+            }
+        }
     }
     
     @RequestMapping(value={"create","list/create"},method = RequestMethod.POST)

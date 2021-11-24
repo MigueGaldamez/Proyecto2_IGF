@@ -5,7 +5,7 @@
  */
 package com.model;
 
-import com.entities.DetalleGasto;
+import com.entities.DetalleFinanciamiento;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -14,18 +14,17 @@ import org.hibernate.Transaction;
 
 /**
  *
- * @author Meybel Guardado
+ * @author jfgan
  */
-public class DetalleGastoModel {
-    
+public class DetalleFinanciamientoModel {
     SessionFactory factory = HibernateUtil.getSessionFactory();
 
     //Esta parte no cambia
-     public int insertarDetalleGasto(DetalleGasto detalle_gasto) {
+     public int insertarDetalleFinanciamiento(DetalleFinanciamiento detalle_financiamiento) {
         Session ses = factory.openSession();
         try {
             Transaction tran = ses.beginTransaction();
-            ses.save(detalle_gasto);
+            ses.save(detalle_financiamiento);
             tran.commit();
             ses.close();
             return 1;
@@ -36,13 +35,13 @@ public class DetalleGastoModel {
      }
      
      //Esta parte no cambia
-      public List<DetalleGasto> listarDetalleGastos(){
+      public List<DetalleFinanciamiento> listarDetalleFinanciamientos(){
 
         Session ses= factory.openSession();
-        Query consulta= ses.createQuery("SELECT e FROM DetalleGasto e"); //Nombre de la tabla en Mayúsculas
+        Query consulta= ses.createQuery("SELECT e FROM DetalleFinanciamiento e"); //Nombre de la tabla en Mayúsculas
         try{
 
-        List<DetalleGasto> lista= consulta.list();
+        List<DetalleFinanciamiento> lista= consulta.list();
         ses.close();
         return lista;
 
@@ -54,14 +53,14 @@ public class DetalleGastoModel {
      }
       
        //Esta parte no cambia
-    public List<DetalleGasto> listarDetalleGastosID(String id){
+    public List<DetalleFinanciamiento> listarDetalleFinanciamientosID(String id){
         
         int idPresupuesto = Integer.parseInt(id);
         Session ses= factory.openSession();
-        Query consulta= ses.createQuery("SELECT e FROM DetalleGasto e WHERE id_presupuesto = "+idPresupuesto); //Nombre de la tabla en Mayúsculas
+        Query consulta= ses.createQuery("SELECT e FROM DetalleFinanciamiento e WHERE id_presupuesto = "+idPresupuesto); //Nombre de la tabla en Mayúsculas
         try{
 
-        List<DetalleGasto> lista= consulta.list();
+        List<DetalleFinanciamiento> lista= consulta.list();
         ses.close();
         return lista;
 
@@ -77,13 +76,13 @@ public class DetalleGastoModel {
       
       
       //Esta parte no cambia
-      public DetalleGasto obtenerDetalleGasto(String codigo) {
+      public DetalleFinanciamiento obtenerDetalleFinanciamiento(String codigo) {
         Session ses= factory.openSession();
         try{
            int codigoI = Integer.parseInt(codigo);
-           DetalleGasto detalle_gasto= (DetalleGasto) ses.get(DetalleGasto.class,codigoI);
+           DetalleFinanciamiento detalle_financiamiento= (DetalleFinanciamiento) ses.get(DetalleFinanciamiento.class,codigoI);
             ses.close();
-        return detalle_gasto;
+        return detalle_financiamiento;
         }
         catch(Exception e){
             ses.close();
@@ -91,11 +90,11 @@ public class DetalleGastoModel {
         }
      }
       //Esta parte no cambia
-      public int modificarDetalleGasto(DetalleGasto detalle_gasto) {
+      public int modificarDetalleFinanciamiento(DetalleFinanciamiento detalle_financiamiento) {
         Session ses = factory.openSession();
         try {
             Transaction tran = ses.beginTransaction();
-            ses.update(detalle_gasto);
+            ses.update(detalle_financiamiento);
             tran.commit();
             ses.close();
             return 1;
@@ -105,16 +104,16 @@ public class DetalleGastoModel {
         }
      }
       //Esta parte no cambia
-      public int eliminarDetalleGasto(String id){
+      public int eliminarDetalleFinanciamiento(String id){
         int filasAfectadas=0;
         Session ses= factory.openSession();
         int codigoI = Integer.parseInt(id);
 
         try{
-        DetalleGasto detalle_gasto= (DetalleGasto) ses.get(DetalleGasto.class,codigoI);
-            if(detalle_gasto!=null){
+        DetalleFinanciamiento detalle_financiamiento= (DetalleFinanciamiento) ses.get(DetalleFinanciamiento.class,codigoI);
+            if(detalle_financiamiento!=null){
                 Transaction tran= ses.beginTransaction();
-                ses.delete(detalle_gasto);
+                ses.delete(detalle_financiamiento);
                 tran.commit();
                 filasAfectadas=1;
             }

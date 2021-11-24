@@ -22,9 +22,9 @@
                             <div class="row">
 
                                 <div class="form-group mb-3">
-                                    <label for="email">Correo: <span class="text-danger"><b>*</b></span></label>
+                                    <label for="username">Usuario: <span class="text-danger"><b>*</b></span></label>
                                    <div class="input-group">
-                                       <form:input path="email" type="email" Class="form-control"/>
+                                       <form:input path="username" type="text" Class="form-control"/>
                                        <span class="input-group-addon"><span
                                       class="glyphicon glyphicon-asterisk"></span></span>
                                    </div>

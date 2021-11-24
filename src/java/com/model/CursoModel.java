@@ -6,6 +6,7 @@
 package com.model;
 
 import com.entities.Curso;
+import com.entities.Presupuesto;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -19,6 +20,20 @@ public class CursoModel {
         try {
             Transaction tran = ses.beginTransaction();
             ses.save(usuario);
+            tran.commit();
+            ses.close();
+            return 1;
+        } catch (Exception e) {
+            ses.close();
+            return 0;
+        }
+     }
+     
+     public int insertarPresupuesto(Presupuesto presupuesto) {
+        Session ses = factory.openSession();
+        try {
+            Transaction tran = ses.beginTransaction();
+            ses.save(presupuesto);
             tran.commit();
             ses.close();
             return 1;
@@ -68,6 +83,21 @@ public class CursoModel {
         catch(Exception e){
         ses.close();
         return null;
+        }
+
+    }
+      
+       public int obtenerCursoMax() {
+        Session ses= factory.openSession();
+         try {
+            Query query = ses.createQuery("select max(e.idCurso) from Curso e");     
+            List lista = query.list();
+            int i =(int) lista.get(0);
+            ses.close();
+            return i;
+        } catch (Exception e) {
+            ses.close();
+            return 0;
         }
 
     }
