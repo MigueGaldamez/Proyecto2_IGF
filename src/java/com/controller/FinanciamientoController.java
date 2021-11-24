@@ -2,8 +2,10 @@ package com.controller;
 
 //importacion de las librerias necesarias
 import com.entities.Financiamiento;
+import com.entities.Usuario;
 import com.model.RolFinanciamiento;
 import com.model.FinanciamientoModel;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,17 +24,27 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @RequestMapping("financiamientos")
 
 public class FinanciamientoController {
+    
     FinanciamientoModel financiamientoModel = new FinanciamientoModel();
     RolFinanciamiento rolFinanciamiento = new RolFinanciamiento();
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-    
+    Usuario user = new Usuario();
     
     @RequestMapping(value={"list"})
-    public String listarFinanciamiento(Model model){
-        
-        model.addAttribute("listarFinanciamiento",financiamientoModel.listarFinanciamiento());
-        model.addAttribute("financiamiento",new Financiamiento());
-        return "financiamiento/listarFinancia";
+    public String listarFinanciamiento(Model model, HttpSession session){
+        if (session.getAttribute("usr") == null){
+            return "redirect:/";
+        } else {
+            user = (Usuario) session.getAttribute("usr");
+            String rol = user.getRol().getNombreRol();
+            if (rol.equals("Administrador")){
+                model.addAttribute("listarFinanciamiento",financiamientoModel.listarFinanciamiento());
+                model.addAttribute("financiamiento",new Financiamiento());
+                return "financiamiento/listarFinancia";
+        } else {
+                return "redirect:/";
+            }
+        }
     }
     
     @RequestMapping(value={"create","list/create"},method = RequestMethod.POST)

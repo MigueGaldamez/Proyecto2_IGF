@@ -6,7 +6,9 @@
 package com.controller;
 
 import com.entities.Gasto;
+import com.entities.Usuario;
 import com.model.GastoModel;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,13 +25,24 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("gastos")
 public class GastosController {
     GastoModel gastoModel = new GastoModel();
+    Usuario user = new Usuario();
     
     @RequestMapping(value={"list"})
-    public String listarGastos(Model model){
-
-        model.addAttribute("listarGastos",gastoModel.listarGastos());
-        model.addAttribute("gasto",new Gasto());
-        return "gastos/listar";
+    public String listarGastos(Model model, HttpSession session){
+        //String sesion = session.getId();
+        if (session.getAttribute("usr") == null){
+            return "redirect:/";
+        } else {
+            user = (Usuario) session.getAttribute("usr");
+            String rol = user.getRol().getNombreRol();
+            if (rol.equals("Administrador")){
+                model.addAttribute("listarGastos",gastoModel.listarGastos());
+                model.addAttribute("gasto",new Gasto());
+                return "gastos/listar";
+        } else {
+                return "redirect:/";
+            }
+        }
     }
     @RequestMapping(value={"create","list/create"},method = RequestMethod.POST)
     public String insertarGasto(@ModelAttribute("gasto")Gasto gasto, Model model,RedirectAttributes atributos){

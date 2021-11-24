@@ -21,7 +21,7 @@
         
         <c:if test="${! empty usr}">
             <li class="nav-item">
-               <a class="nav-link" aria-current="page" href="#">Inicio</a>
+               <a id="inicio_nav" class="nav-link" aria-current="page" href="<spring:url value="/"/>">Inicio</a>
              </li>
              </li>
              <!--
@@ -35,62 +35,91 @@
              <li class="nav-item">
                  <a class="nav-link active" href="<spring:url value="/roles/list"/>">Roles</a>
              </li>-->
-             <li class="nav-item">
-                 <a id="proveedores_nav" class="nav-link" href="<spring:url value="/proveedores/list"/>">Proveedores</a>
-             </li>
-             <li class="nav-item">
-                 <a id="locales_nav" class="nav-link" href="<spring:url value="/locales/list"/>">Locales</a>
-             </li>
-             <li class="nav-item">
-               <a id="programas_nav" class="nav-link" href="<spring:url value="/programas/list"/>">Programas</a>
-             </li>
-              <li class="nav-item">
-               <a id="cursos_nav" class="nav-link " href="<spring:url value="/cursos/list"/>">Cursos</a>
-             </li>
-              <!--<li class="nav-item">
-               <a class="nav-link active" href="<spring:url value="/gastos/list"/>">Gastos</a>
-             </li>-->
-             
-              <li class="nav-item">
-               <a class="nav-link"href="<spring:url value="/presupuesto/detalles"/>">Presupuestacion</a>
-             </li>
-             <!--<li class="nav-item">
-               <a class="nav-link" href="<spring:url value="/financiamientos/list"/>">Financiamientos</a>
-             </li>-->
-            <li class="nav-item dropdown">
-                <a id="acceso_nav" class="nav-link dropdown-toggle" href="#" id="navAc" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                 Acceso
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navAc">
-                  <li><a id="usuario_nav" class="dropdown-item text-dark"  href="<spring:url value="/usuarios/list"/>">Usuarios</a></li>
-                  <li><a id="roles_nav" class="dropdown-item text-dark"  href="<spring:url value="/roles/list"/>">Roles</a></li>
+             <c:if test="${ usr.rol.nombreRol == 'Administrador'}">
+                <li class="nav-item">
+                    <a id="proveedores_nav" class="nav-link" href="<spring:url value="/proveedores/list"/>">Proveedores</a>
+                </li>
+                <li class="nav-item">
+                    <a id="locales_nav" class="nav-link" href="<spring:url value="/locales/list"/>">Locales</a>
+                </li>
+                <li class="nav-item">
+                  <a id="programas_nav" class="nav-link" href="<spring:url value="/programas/list"/>">Programas</a>
+                </li>
+                 <li class="nav-item">
+                  <a id="cursos_nav" class="nav-link " href="<spring:url value="/cursos/list"/>">Cursos</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a id="acceso_nav" class="nav-link dropdown-toggle" href="#" id="navAc" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     Acceso
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navAc">
+                      <li><a id="usuario_nav" class="dropdown-item text-dark"  href="<spring:url value="/usuarios/list"/>">Usuarios</a></li>
+                      <li><a id="roles_nav" class="dropdown-item text-dark"  href="<spring:url value="/roles/list"/>">Roles</a></li>
+
+
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a id="administracion_nav" class="nav-link dropdown-toggle" href="#" id="navAd" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Administracion
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navAd">
+                        <li><a id="financiamientos_nav" class="dropdown-item text-dark" href="<spring:url value="/financiamientos/list"/>">Financiamientos</a></li>
+                        <li><a id="gastos_nav" class="dropdown-item text-dark"  href="<spring:url value="/gastos/list"/>">Gastos</a></li>
+                        <!--<li><hr class="dropdown-divider"></li>-->
+                        <!--<li><a id="gastos_det_nav" class="dropdown-item text-dark" href="<spring:url value="/detalleGastos/list"/>">Detalle de gastos</a></li>-->
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a id="presupuestacion_nav" class="nav-link"href="<spring:url value="/presupuestos/list"/>">Presupuestacion</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a id="participantes_nav" class="nav-link dropdown-toggle" href="#" id="navAd" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Participantes
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navAd">
+                        <li class="nav-item">
+                            <a id="participante_nav" class="dropdown-item text-dark" href="<spring:url value="/participantes/list"/>">Gestionar participantes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="inscripcion_nav" class="dropdown-item text-dark" href="<spring:url value="/inscripciones/list"/>">Inscribir participante a curso</a>
+                        </li>
+                    </ul>
+                </li>
+            </c:if>
+            <c:if test="${ usr.rol.nombreRol == 'Contador'}">
+                <li class="nav-item">
+                    <a id="presupuestacion_nav" class="nav-link"href="<spring:url value="/presupuestos/list"/>">Presupuestacion</a>
+                </li>
+            </c:if>
                 
-                  
-                </ul>
-            </li>
-            <li class="nav-item dropdown">
-                <a id="administracion_nav" class="nav-link dropdown-toggle" href="#" id="navAd" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Administracion
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navAd">
-                  <li><a id="financiamientos_nav" class="dropdown-item text-dark" href="<spring:url value="/financiamientos/list"/>">Financiamientos</a></li>
-                  <li><a id="gastos_nav" class="dropdown-item text-dark"  href="<spring:url value="/gastos/list"/>">Gastos</a></li>
-                   <li><hr class="dropdown-divider"></li>
-                  <li><a id="gastos_det_nav" class="dropdown-item text-dark" href="<spring:url value="/detalleGastos/list"/>">Detalle de gastos</a></li>
-                </ul>
-            </li>
+            <c:if test="${ usr.rol.nombreRol == 'Secretaria'}">
+                <li class="nav-item dropdown">
+                    <a id="participantes_nav" class="nav-link dropdown-toggle" href="#" id="navAd" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Participantes
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navAd">
+                        <li class="nav-item">
+                            <a id="participante_nav" class="dropdown-item text-dark" href="<spring:url value="/participantes/list"/>">Gestionar participantes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="inscripcion_nav" class="dropdown-item text-dark" href="<spring:url value="/inscripciones/list"/>">Inscribir participante a curso</a>
+                        </li>
+                    </ul>
+                </li>
+                
+            </c:if>
+             
+                
+            
+            
              
              
-             <li class="nav-item">
-               <a id="participante_nav" class="nav-link" href="<spring:url value="/participantes/list"/>">Participante</a>
-             </li>
+             
         </c:if>
         <c:if test="${empty usr}">
              <li class="nav-item">
-               <a class="nav-link active" aria-current="page" href="<spring:url value="/"/>">Iniciar Sesión</a>
-             </li>
-             <li class="nav-item">
-               <a class="nav-link active" href="<spring:url value="/registrar"/>">Registrarse</a>
+               <a class="nav-link active" aria-current="page" href="<spring:url value="/login"/>">Iniciar Sesión</a>
              </li>
         </c:if>
       </ul>

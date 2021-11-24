@@ -18,7 +18,7 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar Gasto</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Gasto</h5>
                 <a type="button" class="btn-close" href="<spring:url value="/gastos/list/"/>"></a>
                 
               </div>
@@ -32,9 +32,8 @@
                         </div>
                         <c:if test="${!empty gasto.nombreGasto}">
                             <div class="form-group">
-                                <label for="idGasto">Codigo del Gasto:</label>
                                 <div class="input-group">
-                                    <form:input path="idGasto" cssClass="form-control"/>
+                                    <form:input type="hidden" path="idGasto" cssClass="form-control"/>
                                     <span class="input-group-addon"><span
                                    class="glyphicon glyphicon-asterisk"></span></span>
                                 </div>
@@ -89,7 +88,6 @@
                     <table class="table table-striped table-bordered table-hover table-sm text-center" id="tabla">
                         <thead class="table-dark">
                             <tr>
-                               <th>Codigo Gasto</th>
                                <th>Nombre Gasto</th>
                              
                                <th>Operaciones</th>
@@ -99,7 +97,6 @@
                              <c:forEach items="${listarGastos}" var="Gasto">
                                  <tr>
                                      
-                                    <td>${Gasto.idGasto}</td>
                                     <td>${Gasto.nombreGasto}</td>
                                   
                                     <td colspan="2">

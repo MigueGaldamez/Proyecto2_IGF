@@ -24,7 +24,7 @@
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar Participante</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Participante</h5>
                 <a type="button" class="btn-close" href="<spring:url value="/participantes/list/"/>"></a>
                 
               </div>
@@ -37,14 +37,9 @@
                             <strong><span class="glyphicon glyphicon-asterisk"></span>Campos requeridos</strong>
                         </div>
                         <c:if test="${!empty participante.nombreParticipante}">
-                            <div class="form-group col-6">
-                                <label for="idParticipante">Codigo del participante:</label>
-                                <div class="input-group">
-                                    <form:input path="idParticipante" cssClass="form-control"/>
-                                    <span class="input-group-addon"><span
-                                   class="glyphicon glyphicon-asterisk"></span></span>
-                                </div>
-                            </div>
+                            
+                                    <form:input type="hidden" path="idParticipante" cssClass="form-control"/>
+                        
                         </c:if>
                         <div class="form-group col-6">
                             <label for="nombreParticipante">Nombre del Participante:</label>
@@ -168,14 +163,9 @@
                     <table class="table table-striped table-bordered table-hover table-sm text-center" id="tabla">
                         <thead class="table-dark">
                             <tr>
-                               <th>Id Participante</th>
+                                <th>DUI</th>
                                <th>Nombre Participante</th>
                                <th>Apellido Participante</th>
-                               <th>DUI</th>
-                               <th>NIT</th>
-                               <th>Fecha Nacimiento</th>
-                               <th>Escolaridad</th>
-                               <th>Lugar Trabajo</th>
                                <th>Telefono</th>
                                <th>Correo</th>
                                <th>Opciones</th>
@@ -185,14 +175,9 @@
                              <c:forEach items="${listarParticipantes}" var="Participante">
                                  <tr>
                                      
-                                    <td>${Participante.idParticipante}</td>
+                                   <td>${Participante.dui}</td>
                                     <td>${Participante.nombreParticipante}</td>
                                     <td>${Participante.apellidoParticipante}</td>
-                                   <td>${Participante.dui}</td>
-                                    <td>${Participante.nit}</td>
-                                   <td>${Participante.fechaNacimiento}</td>
-                                   <td>${Participante.escolaridad}</td>
-                                   <td>${Participante.lugarTrabajo}</td>
                                    <td>${Participante.telefonoParticipante}</td>
                                    <td>${Participante.correoParticipante}</td>
                                     <td colspan="2">
@@ -217,7 +202,7 @@
                 };
              }
         $(document).ready(function(){
-           
+           $('#participantes_nav').addClass('active');
            $('#participante_nav').addClass('active');
            
             var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {

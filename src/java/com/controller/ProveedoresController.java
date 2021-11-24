@@ -11,8 +11,10 @@ package com.controller;
  */
 import com.entities.Proveedor;
 import com.entities.Proveedor;
+import com.entities.Usuario;
 import com.model.RolModel;
 import com.model.ProveedorModel;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,15 +31,24 @@ public class ProveedoresController {
     ProveedorModel proveedorModel = new ProveedorModel();
     RolModel rolModel = new RolModel();
     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    Usuario user = new Usuario();
     
     @RequestMapping(value={"list"})
-    
-    public String listarProveedores(Model model){
-        
-        model.addAttribute("listarProveedores",proveedorModel.listarProveedores());
-        model.addAttribute("listarRoles",rolModel.listarRoles());
-        model.addAttribute("proveedor",new Proveedor());
-        return "proveedores/listar";
+    public String listarProveedores(Model model, HttpSession session){
+        if (session.getAttribute("usr") == null){
+            return "redirect:/";
+        } else {
+            user = (Usuario) session.getAttribute("usr");
+            String rol = user.getRol().getNombreRol();
+            if (rol.equals("Administrador")){
+                model.addAttribute("listarProveedores",proveedorModel.listarProveedores());
+                model.addAttribute("listarRoles",rolModel.listarRoles());
+                model.addAttribute("proveedor",new Proveedor());
+                return "proveedores/listar";
+        } else {
+                return "redirect:/";
+            }
+        }
     }
     @RequestMapping(value={"create","list/create"},method = RequestMethod.POST)
     public String insertarProveedor(@ModelAttribute("proveedor")Proveedor proveedor, Model model,RedirectAttributes atributos){

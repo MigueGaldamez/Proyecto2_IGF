@@ -23,7 +23,7 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar Financiamiento</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Financiamiento</h5>
                 <a type="button" class="btn-close" href="<spring:url value="/financiamientos/list/"/>"></a>
                 
               </div>
@@ -37,9 +37,8 @@
                         </div>
                         <c:if test="${!empty financiamiento.nombreFinanciamiento}">
                             <div class="form-group">
-                                <label for="idFinanciamiento">Codigo del usuario:</label>
                                 <div class="input-group">
-                                    <form:input path="idFinanciamiento" cssClass="form-control"/>
+                                    <form:input type="hidden" path="idFinanciamiento" cssClass="form-control"/>
                                     <span class="input-group-addon"><span
                                    class="glyphicon glyphicon-asterisk"></span></span>
                                 </div>
@@ -96,7 +95,6 @@
                     <table class="table table-striped table-bordered table-hover table-sm text-center" id="tabla">
                         <thead class="table-dark">
                             <tr>
-                               <th>ID Financiamiento</th>
                                <th>Nombre Financiamiento</th>
                                <th>Opciones</th>
                             </tr>
@@ -105,7 +103,6 @@
                              <c:forEach items="${listarFinanciamiento}" var="Financiamiento">
                                 <tr>
                                      
-                                    <td>${Financiamiento.idFinanciamiento}</td>
                                     <td>${Financiamiento.nombreFinanciamiento}</td>
 
                                     <td colspan="2">

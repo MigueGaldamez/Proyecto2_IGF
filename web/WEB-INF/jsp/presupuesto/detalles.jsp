@@ -33,7 +33,7 @@
                         <thead class="table-dark">
                             <tr>
                                <th>Financiamiento</th>
-                               <th>Fecha registro</th>
+                               <th>Última modificación</th>
                                <th>Monto</th>
                             </tr>
                         </thead>
@@ -48,7 +48,8 @@
                          </tbody>
                     </table>
                     
-                    <button type="button" class="btn btn-primary">Gestionar fuentes de financiamiento</button>
+                    <a class="btn btn-primary" href="<spring:url value="/presupuestoingreso/${presupuesto}/list"/>">
+                    Gestionar fuentes de financiamiento</a>
                 </div>
             </div>
             
@@ -58,13 +59,13 @@
                  <h4>Gastos: </h4>
                  <h5>Total gastos  <span class="badge bg-secondary">${totalGastos}</span></h5>
                  
-                <div class="col">
+                <div class="col mb-5">
                    
                     <table class="table table-striped table-bordered table-hover table-sm text-center" id="tabla">
                         <thead class="table-dark">
                             <tr>
                                <th>Gasto</th>
-                               <th>Fecha registro</th>
+                               <th>Última modificación</th>
                                <th>Monto</th>
                             </tr>
                         </thead>
@@ -80,7 +81,8 @@
                              </c:forEach>
                          </tbody>
                     </table>
-                    <button type="button" class="btn btn-primary">Gestionar gastos</button>
+                    <a class="btn btn-primary" href="<spring:url value="/presupuestogasto/${presupuesto}/list"/>">
+                    Gestionar gastos</a>
                 </div>
             </div>
         </div>

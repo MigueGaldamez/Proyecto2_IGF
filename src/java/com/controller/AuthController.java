@@ -33,6 +33,17 @@ public class AuthController {
     
   
     @RequestMapping("/")
+    public String inicio(Model model, HttpSession session){
+        //model.addAttribute("usuario",new Usuario());
+        if (session.getAttribute("usr") == null){
+            return "redirect:/login";
+        } else {
+            return "index";
+        }
+        
+    }
+    
+    @RequestMapping("login")
     public String iniciarSesion(Model model){
         model.addAttribute("usuario",new Usuario());
         return "auth/iniciarSesion";
@@ -46,17 +57,17 @@ public class AuthController {
     @RequestMapping(value="iniciarSesion",method = RequestMethod.POST)
     public String iniciarSesion(@ModelAttribute("usuario")Usuario usuario, Model model,RedirectAttributes atributos,HttpSession session){
         String errores="";
-        if(usuario.getEmail().isEmpty()||usuario.getPassword().isEmpty()){
+        if(usuario.getUsername().isEmpty()||usuario.getPassword().isEmpty()){
             errores = "Campos incompletos";
             model.addAttribute("errores",errores);
             model.addAttribute("usuario",usuario);
             return "auth/iniciarSesion";
         }
-        Usuario us = usuarioModel.obtenerUsuarioPorCorreo(usuario.getEmail());
+        Usuario us = usuarioModel.obtenerUsuarioPorUsuario(usuario.getUsername());
        
         if(passwordEncoder.matches(usuario.getPassword(), us.getPassword())){
             session.setAttribute("usr", us);
-            return "redirect:usuarios/list";
+            return "redirect:/";
         }
         else{
             errores = "Error de inicio de sesión";
@@ -108,6 +119,6 @@ public class AuthController {
     public String cerrarSesion(Model model,HttpSession session){
         session.invalidate();
         model.addAttribute("usuario",new Usuario());
-        return "auth/registrar";
+        return "redirect:/login";
     }
 }

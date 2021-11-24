@@ -34,6 +34,7 @@ public class UsuarioModel {
      public List<Usuario> listarUsuarios(){
 
         Session ses= factory.openSession();
+        //Query consulta= ses.createQuery("SELECT e.idUsuario, e.rol, e.nombreUsuario, e.apellidoUsuario, e.username, e.email FROM Usuario e");
         Query consulta= ses.createQuery("SELECT e FROM Usuario e");
         try{
 
@@ -64,6 +65,22 @@ public class UsuarioModel {
         Session ses= factory.openSession();
         try{
             Query query = ses.createQuery("FROM Usuario e  where e.email = :email").setParameter("email", correo);            
+            List lista = query.list();
+            Usuario usuario =(Usuario) lista.get(0);
+            ses.close();
+            return usuario;
+        }
+        catch(Exception e){
+        ses.close();
+        return null;
+        }
+
+    }
+      
+    public Usuario obtenerUsuarioPorUsuario(String username) {
+        Session ses= factory.openSession();
+        try{
+            Query query = ses.createQuery("FROM Usuario e  where e.username = :username").setParameter("username", username);            
             List lista = query.list();
             Usuario usuario =(Usuario) lista.get(0);
             ses.close();

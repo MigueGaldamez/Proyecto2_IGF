@@ -18,7 +18,7 @@
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar Rol</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Rol</h5>
                 <a type="button" class="btn-close" href="<spring:url value="/roles/list/"/>"></a>
                 
               </div>
@@ -77,9 +77,9 @@
                     <h3>Lista de Roles</h3>
                 </div>
                 <!--Inicio boton modal-->
-                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <!--<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Nuevo Rol
-                </button>
+                </button>-->
             </div>
             <!--fin boton modal-->
             <div class="row mt-4">
@@ -92,7 +92,7 @@
                                <th>Codigo Rol</th>
                                <th>Nombre Rol</th>
                              
-                               <th>Operaciones</th>
+                               <!--<th>Operaciones</th>-->
                             </tr>
                         </thead>
                         <tbody>
@@ -102,12 +102,12 @@
                                     <td>${Rol.idRol}</td>
                                     <td>${Rol.nombreRol}</td>
                                   
-                                    <td colspan="2">
+                                    <!-- <td colspan="2">
                                         <a class="btn btn-success btn-sm" id="botonEditar" href="<spring:url value="/roles/edit/${Rol.idRol}"/>">
                                         <span class="glyphicon glyphicon-edit"></span>Editar</a>
                                          <a class="btn btn-danger btn-sm" href="javascript:eliminar('${Rol.idRol}')">
                                         <span class="glyphicon glyphicon-edit"></span>Eliminar</a>
-                                    </td>
+                                    </td>-->
                                  </tr>
                              </c:forEach>
                          </tbody>
